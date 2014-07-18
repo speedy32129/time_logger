@@ -6,8 +6,8 @@ This is needed as we want several links for our time tracker menu item.
 The span is populated with current time tracker state.
 (no AJAX request here, this allows to have the time tracker immediately visible)
 -->
-<%= javascript_tag "document.observe('dom:loaded', function () {
-    $('time-logger-menu').replace(
+<%= javascript_tag "jQuery(document).ready(function($){
+    $('#time-logger-menu').html(
     '<span id=\"time-logger-menu\">#{escape_javascript(((render :partial => 'time_loggers/embed_menu').delete "\n").strip)}</span>');
     });"
 %>
@@ -16,11 +16,11 @@ The span is populated with current time tracker state.
 This script defines the updateTimeLoggerMenu() function which will update
 the time tracker menu item using an AJAX request to retrieve the data
 -->
-<%= javascript_tag "function updateTimeloggeMenu() {
+<%= javascript_tag "function updateTimeTrackerMenu() {
     #{remote_function(
         :url => { :controller => '/time_loggers', :action => 'render_menu', :project_id => (@project.nil? ? nil : @project.id), :issue_id => (@issue.nil? ? nil : @issue.id) },
         :before => "Ajax.activeRequestCount--",
-        :complete => "updateElementIfChanged('time-loggers-menu', request.responseText);")
+        :complete => "updateElementIfChanged('time-logger-menu', request.responseText);")
     };}"
 %>
 
@@ -28,7 +28,6 @@ the time tracker menu item using an AJAX request to retrieve the data
 This script periodically updates the time tracker menu item to reflect any changes in the tracking state
 Refresh rate is taken from settings. If settings is invalid, 60 secs is used. The minimum value is 5 secs.
 -->
-<%= javascript_tag "new PeriodicalExecuter(updateTimeLoggerMenu, #{[Setting.plugin_time_logger['refresh_rate'].to_i == 0 ? 60 : Setting.plugin_time_logger['refresh_rate'].to_i, 5].max});" %>
+<%= javascript_tag "new PeriodicalExecuter(updateTimeTrackerMenu, #{[Setting.plugin_time_logger['refresh_rate'].to_i == 0 ? 60 : Setting.plugin_time_logger['refresh_rate'].to_i, 5].max});" %>
 
 <% end %>
-

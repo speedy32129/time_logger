@@ -1,4 +1,4 @@
-Time Logger is a Redmine plugin that can be used to ease time tracking
+Redmine Time Logger is a Redmine plugin that can be used to ease time tracking
 when working on issues.
 
 Copyright (C) 2010 Jérémie Delaitre

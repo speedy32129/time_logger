@@ -1,9 +1,7 @@
 = Redmine Time Logger plugin for Redmine >= 2.x only!!!
 
-Time logger is a Redmine plugin to ease time tracking when working on an issue.
+Time tracker is a Redmine plugin to ease time tracking when working on an issue.
 The plugin allows to start/suspend/resume/stop a timer on a per user basis.
-
-This is a spin-off of the original time tracker by Jérémie Delaitre.  I give all the credit to him.  I renamed it as to not have issue with the current time_tracker by HicknHack Software(http://www.hicknhack-software.com). My aim to to create a replacement that is compatible with many different versions of Redmine.
 
 == Features
 
@@ -14,7 +12,7 @@ This is a spin-off of the original time tracker by Jérémie Delaitre.  I give a
 
 == Getting the plugin
 
-The newest version is always at {GitHub}[http://github.com/speedy32129/time_logger].
+The newest version is always at {GitHub}[http://github.com/martinllanos/time_logger].
 
 == Install
 
