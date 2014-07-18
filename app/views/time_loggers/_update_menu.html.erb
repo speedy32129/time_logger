@@ -1,0 +1,49 @@
+<% if User.current.logged? %>
+
+<!--
+This script replaces the <a id="time-logger-menu">...</a> element by a span with the same id.
+This is needed as we want several links for our time tracker menu item.
+The span is populated with current time tracker state.
+(no AJAX request here, this allows to have the time tracker immediately visible)
+-->
+<%= javascript_tag "jQuery(document).ready(function($){
+    $('#time-logger-menu').html(
+    '<span id=\"time-logger-menu\">#{escape_javascript(((render :partial => 'time_loggers/embed_menu').delete "\n").strip)}</span>');
+    });"
+%>
+
+<!--
+This script defines the updateTimeLoggerMenu() function which will update
+the time tracker menu item using an AJAX request to retrieve the data
+-->
+<%= javascript_tag do %>
+function updateTimeLoggerMenu() {
+$.ajax({
+	url:"<%=url_for :controller => '/time_loggers',:action => 'render_menu' %>",
+	data:({<%= (@project.nil? ? nil : "project_id:#{@project.id},") %><%= (@issue.nil? ? nil : "issue_id:#{@issue.id}") %> }),
+	cache:false,
+	success: function(data){
+		$('#time-logger-menu').html(data);
+	},
+}); 
+}
+<% end %>
+
+<!--
+This script periodically updates the time tracker menu item to reflect any changes in the tracking state
+Refresh rate is taken from settings. If settings is invalid, 60 secs is used. The minimum value is 5 secs.
+-->
+<%= javascript_tag "var timer = setInterval(updateTimeLoggerMenu, 60000);" %>
+<% end %>
+<%= javascript_tag do %>
+$(function() {
+  $('[data-remote][data-replace]')
+    .data('type', 'html')
+    .live('ajax:success', function(event, data) {
+      var $this = $(this);
+      $($this.data('replace')).html(data);
+      $this.trigger('ajax:replaced');
+    });
+});
+<% end %>
+

@@ -1,0 +1,12 @@
+# Spanish strings go here for Rails i18n
+es:
+  start_time_logger: "Iniciar"
+  stop_time_logger: "Detener"
+  time_logger_not_running: "Detenido"
+  start_time_logger_error: "Error al iniciar el control de tiempo"
+  time_logger_already_running_error: "Ya esta corriendo el control de tiempo"
+  no_time_logger_running: "No esta corriendo el control de tiempo"
+  time_logger_hour_sym: ":"
+  time_logger_refresh_rate: "Frecuencia de refresco"
+  time_logger_seconds: "segundos"
+
