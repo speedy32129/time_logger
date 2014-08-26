@@ -4,6 +4,10 @@ require 'redmine'
 
 require_dependency 'time_logger_hooks'
 
+# workaround helping rails to find the helper-methods
+require File.join(File.dirname(__FILE__), 'app/helpers/application_helper.rb')
+
+
 Redmine::Plugin.register :time_logger do
     name 'Time Logger'
     author 'Jim McAleer'
@@ -25,18 +29,4 @@ Redmine::Plugin.register :time_logger do
             :param => :project_id,
             :if => Proc.new { User.current.logged? }
         }
-end
-
-require 'dispatcher' unless Rails::VERSION::MAJOR >= 3
- 
-if Rails::VERSION::MAJOR >= 3
-   ActionDispatch::Callbacks.to_prepare do
-     # use require_dependency if you plan to utilize development mode
-     require 'time_loggers_patches'
-   end
-else
-  Dispatcher.to_prepare BW_AssetHelpers::PLUGIN_NAME do
-    # use require_dependency if you plan to utilize development mode
-    require 'time_loggers_patches'
-  end
 end
