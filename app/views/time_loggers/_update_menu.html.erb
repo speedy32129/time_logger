@@ -37,13 +37,11 @@ Refresh rate is taken from settings. If settings is invalid, 60 secs is used. Th
 <% end %>
 <%= javascript_tag do %>
 $(function() {
-  $('[data-remote][data-replace]')
-    .data('type', 'html')
-    .live('ajax:success', function(event, data) {
-      var $this = $(this);
-      $($this.data('replace')).html(data);
-      $this.trigger('ajax:replaced');
-    });
+  $(document).on('ajax:success', '[data-remote][data-replace]', function(event, data) {
+    var $this = $(this);
+    $($this.data('replace')).html(data);
+    $this.trigger('ajax:replaced');
+  });
 });
 <% end %>
 

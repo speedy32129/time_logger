@@ -12,7 +12,7 @@ Redmine::Plugin.register :time_logger do
     name 'Time Logger'
     author 'Jim McAleer'
     description 'This is a plugin to help log time in Redmine.  The orignal author was Jérémie Delaitre.  I have decided not to follow the route the HicknHack software has gone because it''s too confusing and have spun this off of that.  I do plan on the option to have multiple loggers running for an individual user.'
-    version '0.5.1'
+    version '0.5.2'
 
     requires_redmine :version_or_higher => '1.1.0'
 
