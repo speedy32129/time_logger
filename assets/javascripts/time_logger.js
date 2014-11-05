@@ -5,3 +5,27 @@ function updateElementIfChanged(id, newContent) {
     el = $(id);
     if (el.innerHTML != newContent) { el.update(newContent); }
 }
+
+$(function() {
+
+  // Support for data-with tag on elements with data-remote.
+  // Pass custom params to data-with to send them with the request.
+  $(document).on('ajax:beforeSend', '[data-remote][data-with]', function(event, xhr, settings){
+    var params = eval($(this).data('with'));
+    if (settings.url.match(/\?/)) {
+      settings.url = settings.url + '&' + params;
+    } else {
+      settings.url = settings.url + params;
+    }
+    return true;
+  });
+
+  // Support for data-replace tag on elements with data-remote.
+  // Pass an jQuery selector that should be replaced with the response from server.
+  $(document).on('ajax:success', '[data-remote][data-replace]', function(event, data) {
+    var $this = $(this);
+    $($this.data('replace')).html(data);
+    $this.trigger('ajax:replaced');
+    return true;
+  });
+});
