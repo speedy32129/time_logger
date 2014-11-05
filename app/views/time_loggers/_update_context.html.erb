@@ -5,8 +5,8 @@
         <li>
         <%= link_to l(:resume_time_logger).capitalize + ' #' + time_logger.issue_id.to_s,
             { :controller => '/time_loggers', :action => 'resume' },
-            :html => { :class => 'icon icon-start' },
-            :update => 'time-logger-menu',
+            :class => 'icon icon-start',
+            'data-replace' => '#time-logger-menu',
             :remote => true
         %>
         </li>
@@ -15,8 +15,8 @@
         <li>
         <%= link_to l(:suspend_time_logger).capitalize + ' #' + time_logger.issue_id.to_s,
             { :controller => '/time_loggers', :action => 'suspend' },
-            :html => { :class => 'icon icon-pause' },
-            :update => 'time-logger-menu',
+            :class => 'icon icon-pause',
+            'data-replace' => '#time-logger-menu',
             :remote => true
         %>
         </li>
@@ -33,8 +33,8 @@
     <li>
         <%= link_to l(:start_time_logger).capitalize + ' #' + @issue.id.to_s,
             { :controller => '/time_loggers', :action => 'start', :issue_id => @issue.id },
-            :html => { :class => 'icon icon-start' },
-            :update => 'time-logger-menu',
+            :class => 'icon icon-start',
+            'data-replace' => '#time-logger-menu',
             :remote => true
         %>
     </li>
