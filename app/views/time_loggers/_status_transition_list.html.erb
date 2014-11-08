@@ -44,7 +44,7 @@
                                         :url => { :controller => '/time_loggers', :action => 'delete_status_transition', :transitions => transitions, :from_id => from },
                                         :html => { :class => 'icon icon-del' },
                                         :complete => "$('status-transition-list').replace(request.responseText);",
-					:remote => true
+                    :remote => true
                                     %>
                                 </td>
                             <% end %>
@@ -66,11 +66,15 @@
             <%= label_tag 'new-transition-to', l(:time_logger_settings_new_transition_to) %>
             <%= select_tag 'new-transition-to', new_transition_to_options %>
             <%= link_to l(:time_logger_settings_new_transition_add),
-                :url => { :controller => '/time_loggers', :action => 'add_status_transition', :transitions => transitions },
-                :with => "'from_id=' + $('new-transition-from').value + '&to_id=' + $('new-transition-to').value",
-                :html => { :class => 'icon icon-add' },
-                :complete => "$('status-transition-list').replace(request.responseText);",
-		:remote => true
+                {
+                    :controller => '/time_loggers',
+                    :action => 'add_status_transition',
+                    :transitions => transitions
+                },
+                "data-with" => "'from_id=' + $('#new-transition-from').val() + '&to_id=' + $('#new-transition-to').val()",
+                :class => 'icon icon-add',
+                'data-replace' => '#status-transition-list',
+                :remote => true
             %>
         </div>
     <% end %>
