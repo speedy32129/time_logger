@@ -70,7 +70,7 @@ class TimeLoggersController < ApplicationController
             hours = @time_logger.hours_spent.round(2)
             @time_logger.destroy
 
-            redirect_to :controller => 'issues', :action => 'edit', :id => issue_id, :time_entry => { :hours => hours }
+            redirect_to :controller => 'issues', :action => 'edit', :id => issue_id, :time_entry => { :hours => hours, :comments => @time_logger.started_on.in_time_zone(User.current.time_zone).strftime("%H:%M") + " "} # final space for comfortable appending of the comment; time zome may be added by " GMT%z" or just "%z" format 
         end
     end
 
