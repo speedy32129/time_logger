@@ -19,7 +19,12 @@
 .icon-stop-action { background-image: url(../images/stop.png); }
 .icon-list-action { background-image: url(../images/list.png); }
 
+/* use this if you want the logger in top bar */
 #time-logger-menu { margin-right: 8px; }
+
+/* use the one below if you want the time logger in the bottom oon it's own
+#time-logger-menu { position:fixed; bottom:0px; right:8px; background:black; padding:1em; }
+*/
 #time-logger-menu a { margin-right: 0px; }
 #time-logger-menu .icon { padding-left: 20px; }
 

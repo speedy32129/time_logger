@@ -4,17 +4,17 @@ class TimeLoggersController < ApplicationController
     def index
         if User.current.nil?
             @user_time_loggers = nil
-            @time_loggers = TimeLogger.find(:all)
+            @time_loggers = TimeLogger.all
         else
-            @user_time_loggers = TimeLogger.find(:all, :conditions => { :user_id => User.current.id })
-            @time_loggers = TimeLogger.find(:all, :conditions => [ 'user_id != ?', User.current.id ])
+            @user_time_loggers = TimeLogger.where(user_id: User.current.id)
+            @time_loggers = TimeLogger.where('user_id != ?', User.current.id)
         end
     end
 
     def start
         @time_logger = current
         if @time_logger.nil?
-            @issue = Issue.find(:first, :conditions => { :id => params[:issue_id] })
+            @issue = Issue.find_by_id(params[:issue_id])
             @time_logger = TimeLogger.new({ :issue_id => @issue.id })
 
             if @time_logger.save
@@ -70,12 +70,16 @@ class TimeLoggersController < ApplicationController
             hours = @time_logger.hours_spent.round(2)
             @time_logger.destroy
 
-            redirect_to :controller => 'issues', :action => 'edit', :id => issue_id, :time_entry => { :hours => hours }
+            redirect_to :controller => 'issues', 
+                :protocol => Setting.protocol,
+                :action => 'edit', 
+                :id => issue_id, 
+                :time_entry => { :hours => hours }
         end
     end
 
     def delete
-        time_logger = TimeLogger.find(:first, :conditions => { :id => params[:id] })
+        time_logger = TimeLogger.find_by_id(params[:id])
         if !time_logger.nil?
             time_logger.destroy
             render :text => l(:time_logger_delete_success)
@@ -85,8 +89,8 @@ class TimeLoggersController < ApplicationController
     end
 
     def render_menu
-        @project = Project.find(:first, :conditions => { :id => params[:project_id] })
-        @issue = Issue.find(:first, :conditions => { :id => params[:issue_id] })
+        @project = Project.find_by_id(params[:project_id])
+        @issue = Issue.find_by_id(params[:issue_id])
         render :partial => 'embed_menu'
     end
 
@@ -107,12 +111,12 @@ class TimeLoggersController < ApplicationController
     protected
 
     def current
-        TimeLogger.find(:first, :conditions => { :user_id => User.current.id })
+        TimeLogger.find_by_user_id(User.current.id)
     end
 
     def apply_status_transition(issue)
         new_status_id = Setting.plugin_time_logger['status_transitions'][issue.status_id.to_s]
-        new_status = IssueStatus.find(:first, :conditions => { :id => new_status_id })
+        new_status = IssueStatus.find_by_id(new_status_id)
         if issue.new_statuses_allowed_to(User.current).include?(new_status)
             journal = @issue.init_journal(User.current, notes = l(:time_logger_label_transition_journal))
             @issue.status_id = new_status_id

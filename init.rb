@@ -11,8 +11,13 @@ require File.join(File.dirname(__FILE__), 'app/helpers/application_helper.rb')
 Redmine::Plugin.register :time_logger do
     name 'Time Logger'
     author 'Jim McAleer'
-    description 'This is a plugin to help log time in Redmine.  The orignal author was Jérémie Delaitre.  I have decided not to follow the route the HicknHack software has gone because it''s too confusing and have spun this off of that.  I do plan on the option to have multiple loggers running for an individual user.'
-    version '0.5.1'
+    description 'The orignal author was Jérémie Delaitre. 
+	0.5.2 - added fix for content menus and status transitions'
+    url 'https://github.com/speedy32129/time_logger'
+    version '0.5.2'
+
+
+    #fix for contect menus
 
     requires_redmine :version_or_higher => '1.1.0'
 
