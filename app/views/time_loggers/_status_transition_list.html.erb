@@ -44,7 +44,7 @@
                                                 '#',
                                                 :remote => true,
                                                 :onclick => "deleteTransitionField(#{from.to_s});$('form').submit();",
-                                                :html_options => { :class => 'icon icon-del' }
+                                                :class => 'icon icon-del'
                                     %>
                                 </td>
                             <% end %>
@@ -69,7 +69,7 @@
                         '#',
                         :remote => true,
                         :onclick => "addTransitionField();$('form').submit();",
-                        :html => { :class => 'icon icon-add' },
+                        :class => 'icon icon-add',
                         :id => 'link-add-transition'
             %>
         </div>

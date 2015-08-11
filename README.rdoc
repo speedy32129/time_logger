@@ -84,6 +84,7 @@ the 'New' status will automatically change it to 'In progress'.
 
 === Change History
 0.5.2.1 - updates
+    fix for missing icons on status transitions
     fixes for status tranistions - removal - Special thanks to kotashiratsuka!!
     fix for some ussers not able to start time logger - thanks to rastydnb!
 
