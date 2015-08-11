@@ -83,9 +83,12 @@ the 'New' status will automatically change it to 'In progress'.
 4. Restart your Redmine
 
 === Change History
-0.5.2.1 - updates
+0.5.2.2 - updates
+    add TLHelper function back due to problem with time_logger
     fix for missing icons on status transitions
-    fixes for status tranistions - removal - Special thanks to kotashiratsuka!!
+
+0.5.2.1 - updates
+    fixes for status tranistions - removal - Special thanks to kotashiratsuka indirectly!!
     fix for some ussers not able to start time logger - thanks to rastydnb!
 
 0.5.2   - updates

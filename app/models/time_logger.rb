@@ -1,12 +1,12 @@
 # Helper access from the model
-#class TLHelper
-#    include Singleton
-#    include TimeLoggersHelper
-#end
+class TLHelper
+    include Singleton
+    include TimeLoggersHelper
+end
 
-#def help
-#    TLHelper.instance
-#end
+def help
+    TLHelper.instance
+end
 
 class TimeLogger < ActiveRecord::Base
     belongs_to :user
