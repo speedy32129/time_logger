@@ -89,7 +89,7 @@ the 'New' status will automatically change it to 'In progress'.
 
 0.5.2.1 - updates
     fixes for status tranistions - removal - Special thanks to kotashiratsuka indirectly!!
-    fix for some ussers not able to start time logger - thanks to rastydnb!
+    fix for some users not able to start time logger - thanks to rastydnb!
 
 0.5.2   - updates
     fix for content menus
