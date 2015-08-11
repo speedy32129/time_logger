@@ -11,10 +11,9 @@ require File.join(File.dirname(__FILE__), 'app/helpers/application_helper.rb')
 Redmine::Plugin.register :time_logger do
     name 'Time Logger'
     author 'Jim McAleer'
-    description 'The orignal author was Jérémie Delaitre. 
-	0.5.2 - added fix for content menus and status transitions'
+    description 'The orignal author was Jérémie Delaitre.'
     url 'https://github.com/speedy32129/time_logger'
-    version '0.5.2'
+    version '0.5.2.1'
 
 
     #fix for contect menus

@@ -82,3 +82,12 @@ the 'New' status will automatically change it to 'In progress'.
 3. Update the database using the migrations. <tt>rake db:migrate_plugins RAILS_ENV=production</tt>
 4. Restart your Redmine
 
+=== Change History
+0.5.2.1 - updates
+    fixes for status tranistions - removal - Special thanks to kotashiratsuka!!
+    fix for some ussers not able to start time logger - thanks to rastydnb!
+
+0.5.2   - updates
+    fix for content menus
+    fix for status transitions
+

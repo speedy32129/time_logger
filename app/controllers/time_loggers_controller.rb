@@ -94,6 +94,7 @@ class TimeLoggersController < ApplicationController
         render :partial => 'embed_menu'
     end
 
+=begin
     def add_status_transition
         transitions = params[:transitions].nil? ? {} : params[:transitions]
         transitions[params[:from_id]] = params[:to_id]
@@ -107,6 +108,7 @@ class TimeLoggersController < ApplicationController
 
         render :partial => 'status_transition_list', :locals => { :transitions => transitions }
     end
+=end
 
     protected
 

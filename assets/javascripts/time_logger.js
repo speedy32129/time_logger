@@ -29,3 +29,19 @@ $(function() {
     return true;
   });
 });
+
+// Used in Plugin Settings page to delete transition
+function deleteTransitionField(from_id) {
+  // changes field name to remove from settings.
+  document.getElementById('settings_status_transitions_' + from_id).name = "deleted_transition" + from_id;
+}
+
+// Used in Plugin Settings page to add transition
+function addTransitionField() {
+  // inserts new hidden tag for new status transition.
+  var elem = document.getElementById('add-transition');
+  var to_id = document.getElementById('new-transition-to').value;
+  var from_id = document.getElementById('new-transition-from').value;
+  var new_tag = '<input type="hidden" id="settings_status_transition_'+ from_id + '" name="settings[status_transitions][' + from_id + ']" value="' + to_id + '">';
+  elem.innerHTML= new_tag;
+}
