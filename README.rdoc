@@ -83,6 +83,10 @@ the 'New' status will automatically change it to 'In progress'.
 4. Restart your Redmine
 
 === Change History
+0.5.2.3 - updates
+	fixed javascript variable declaration
+	added icon sets so user can have more choice with their theme
+	
 0.5.2.2 - updates
     add TLHelper function back due to problem with time_logger
     fix for missing icons on status transitions
