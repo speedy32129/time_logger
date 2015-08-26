@@ -1,17 +1,18 @@
 # Helper access from the model
-class TTHelper
+class TLHelper
     include Singleton
     include TimeLoggersHelper
 end
 
 def help
-    TTHelper.instance
+    TLHelper.instance
 end
 
 class TimeLogger < ActiveRecord::Base
     belongs_to :user
     has_one :issue
 
+    attr_accessible :issue_id
     validates_presence_of :issue_id
 
     def initialize(arguments = nil)

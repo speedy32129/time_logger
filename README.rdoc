@@ -82,3 +82,16 @@ the 'New' status will automatically change it to 'In progress'.
 3. Update the database using the migrations. <tt>rake db:migrate_plugins RAILS_ENV=production</tt>
 4. Restart your Redmine
 
+=== Change History
+0.5.3 - updates
+	fixed javascript variable declaration
+	added icon sets so user can have more choice with their theme - for now this is to be done manually.  Just delte the icons in /time_logger/assets/images (not the sub-folders)  then copy from one of the sub-folders (colorized or original) into /time_logger/assets/image. 
+    add TLHelper function back due to problem with time_logger
+    fix for missing icons on status transitions
+    fixes for status transitions - removal - Special thanks to kotashiratsuka indirectly!!
+    fix for some users not able to start time logger - thanks to rastydnb!
+
+0.5.2   - updates
+    fix for content menus
+    fix for status transitions
+

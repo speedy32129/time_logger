@@ -1,6 +1,15 @@
 module ApplicationHelper
+
     def time_logger_for(user)
         TimeLogger.find_by_user_id(user.id)
+    end
+
+    def issue_from_id(issue_id)
+        Issue.find_by_id(issue_id)
+    end
+
+    def user_from_id(user_id)
+        User.find_by_id(user_id)
     end
 
     def status_from_id(status_id)
@@ -18,9 +27,10 @@ module ApplicationHelper
     def new_transition_from_options(transitions)
         statuses = []
         for status in statuses_list()
-            if !transitions.has_key?(status.id.to_s)
-                statuses << status
-            end
+            statuses << status unless transitions.has_key?(status.id.to_s)
+            #if !transitions.has_key?(status.id.to_s)
+            #    statuses << status
+            #end
         end
         to_status_options(statuses)
     end
