@@ -11,10 +11,9 @@
 
     <h3><%= l(:time_logger_settings_transition_title) %></h3>
     <hr />
-    <div>
-        <%= l(:time_logger_settings_transition_msg) %>
-        <br /><br /><b><%= l(:time_logger_settings_transition_note) %></b>
-        <br /><br />
+    <div class="box tabular">
+        <p><%= l(:time_logger_settings_transition_msg) %></p>
+        <p><%= l(:time_logger_settings_transition_note) %></p>
         <%= render :partial => 'time_loggers/status_transition_list', :locals => { :transitions => @settings['status_transitions'] } %>
     </div>
 </div>

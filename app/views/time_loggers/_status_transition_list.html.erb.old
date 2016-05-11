@@ -2,57 +2,19 @@
     <% edit_allowed = User.current.admin %>
     <% transitions = transitions.nil? ? {} : transitions %>
     <% has_zombie = false %>
-    <div id="add-transition">
-        <table class="list">
-            <thead>
-                <tr>
-                    <th class="zombie" width="5%"></th>
-                    <th class="from" width="35%"><%= l(:time_logger_settings_from_status) %></th>
-                    <th class="to" width="35%"><%= l(:time_logger_settings_to_status) %></th>
-		      <% if edit_allowed %>
-                        <th class="buttons" width="25%"></th>
-                    <% else %>
-                        <th width="25%"></th>
-                    <% end %>
-                </tr>
-                <tr>
-                    <th class="zombie"></th>
-                    <th class="from">
-                        <%= select_tag 'new-transition-from', new_transition_from_options(transitions) %>
-			</th>
-                    <th>
-                        <%= select_tag 'new-transition-to', new_transition_to_options %>
-                    </th>
-                    <% if edit_allowed %>
-                    <th>
-                        <%= link_to l(:time_logger_settings_new_transition_add),
-                            '#',
-                            :remote => true,
-                            :onclick => "addTransitionField();$('form').submit();",
-                            :class => 'icon icon-add',
-                            :id => 'link-add-transition'
-                        %>
-                    </th>
-                    <% else %><th></th>			
-                    <% end %>
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <br />
     <div class="autoscroll">
         <table class="list">
             <thead>
                 <tr>
-                    <th class="zombie" width="5%"></th>
-                    <th class="from" width="35%"><%= l(:time_logger_settings_from_status) %></th>
-                    <th class="to" width="35%"><%= l(:time_logger_settings_to_status) %></th>
+                    <th class="zombie"></th>
+                    <th class="from"><%= l(:time_logger_settings_from_status) %></th>
+                    <th class="to"><%= l(:time_logger_settings_to_status) %></th>
                     <% if edit_allowed %>
-                        <th class="buttons" width="25%"></th>
-                    <% else %><th width="25%"></th>	
+                        <th class="buttons"></th>
                     <% end %>
                 </tr>
             </thead>
+
             <tbody>
                 <% if transitions.empty? %>
                     <tr class="odd">
@@ -85,7 +47,6 @@
                                                 :class => 'icon icon-del'
                                     %>
                                 </td>
-                            <% else %><td></td>	
                             <% end %>
                         </tr>
                     <% end %>
@@ -98,5 +59,19 @@
         <p class="legend icon icon-warning"><%= l(:time_logger_settings_zombie_transition) %></p>
     <% end %>
 
-
+    <% if edit_allowed %>
+        <div id="add-transition">
+            <%= label_tag 'new-transition-from', l(:time_logger_settings_new_transition_from) %>
+            <%= select_tag 'new-transition-from', new_transition_from_options(transitions) %>
+            <%= label_tag 'new-transition-to', l(:time_logger_settings_new_transition_to) %>
+            <%= select_tag 'new-transition-to', new_transition_to_options %>
+            <%= link_to l(:time_logger_settings_new_transition_add),
+                        '#',
+                        :remote => true,
+                        :onclick => "addTransitionField();$('form').submit();",
+                        :class => 'icon icon-add',
+                        :id => 'link-add-transition'
+            %>
+        </div>
+    <% end %>
 </div>

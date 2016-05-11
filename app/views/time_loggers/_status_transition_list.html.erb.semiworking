@@ -2,57 +2,48 @@
     <% edit_allowed = User.current.admin %>
     <% transitions = transitions.nil? ? {} : transitions %>
     <% has_zombie = false %>
-    <div id="add-transition">
+    <div class="autoscroll">
+    	 <% if edit_allowed %>
+       <div id="add-transition">
+            <table class="list">
+                <thead>
+                <tr>
+                    <th class="zombie">&nbsp;
+                    </th>
+                    <th class="from">
+                    <%= label_tag 'new-transition-from', l(:time_logger_settings_new_transition_from) %>
+                    </th>
+                    <th class="to"><%= select_tag 'new-transition-from', new_transition_from_options(transitions) %>
+			</th>
+                    <th><%= label_tag 'new-transition-to', l(:time_logger_settings_new_transition_to) %>
+                    </th>
+                    <th><%= select_tag 'new-transition-to', new_transition_to_options %>
+                    </td>
+                    <th>
+            <%= link_to l(:time_logger_settings_new_transition_add),
+                        '#',
+                        :remote => true,
+                        :onclick => "addTransitionField();$('form').submit();",
+                        :class => 'icon icon-add',
+                        :id => 'link-add-transition'
+            %>
+                    </th>
+                </tr>
+            </table>
+        </div>
+	<% end %><!-- Transition form -->
         <table class="list">
             <thead>
-                <tr>
-                    <th class="zombie" width="5%"></th>
-                    <th class="from" width="35%"><%= l(:time_logger_settings_from_status) %></th>
-                    <th class="to" width="35%"><%= l(:time_logger_settings_to_status) %></th>
-		      <% if edit_allowed %>
-                        <th class="buttons" width="25%"></th>
-                    <% else %>
-                        <th width="25%"></th>
-                    <% end %>
-                </tr>
                 <tr>
                     <th class="zombie"></th>
-                    <th class="from">
-                        <%= select_tag 'new-transition-from', new_transition_from_options(transitions) %>
-			</th>
-                    <th>
-                        <%= select_tag 'new-transition-to', new_transition_to_options %>
-                    </th>
+                    <th class="from"><%= l(:time_logger_settings_from_status) %></th>
+                    <th class="to"><%= l(:time_logger_settings_to_status) %></th>
                     <% if edit_allowed %>
-                    <th>
-                        <%= link_to l(:time_logger_settings_new_transition_add),
-                            '#',
-                            :remote => true,
-                            :onclick => "addTransitionField();$('form').submit();",
-                            :class => 'icon icon-add',
-                            :id => 'link-add-transition'
-                        %>
-                    </th>
-                    <% else %><th></th>			
+                        <th class="buttons"></th>
                     <% end %>
                 </tr>
             </thead>
-        </table>
-    </div>
-    <br />
-    <div class="autoscroll">
-        <table class="list">
-            <thead>
-                <tr>
-                    <th class="zombie" width="5%"></th>
-                    <th class="from" width="35%"><%= l(:time_logger_settings_from_status) %></th>
-                    <th class="to" width="35%"><%= l(:time_logger_settings_to_status) %></th>
-                    <% if edit_allowed %>
-                        <th class="buttons" width="25%"></th>
-                    <% else %><th width="25%"></th>	
-                    <% end %>
-                </tr>
-            </thead>
+
             <tbody>
                 <% if transitions.empty? %>
                     <tr class="odd">
@@ -85,7 +76,6 @@
                                                 :class => 'icon icon-del'
                                     %>
                                 </td>
-                            <% else %><td></td>	
                             <% end %>
                         </tr>
                     <% end %>
