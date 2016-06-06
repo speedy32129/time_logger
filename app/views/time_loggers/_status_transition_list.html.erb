@@ -9,7 +9,7 @@
                     <th class="zombie" width="5%"></th>
                     <th class="from" width="35%"><%= l(:time_logger_settings_from_status) %></th>
                     <th class="to" width="35%"><%= l(:time_logger_settings_to_status) %></th>
-		      <% if edit_allowed %>
+                    <% if edit_allowed %>
                         <th class="buttons" width="25%"></th>
                     <% else %>
                         <th width="25%"></th>
@@ -19,7 +19,7 @@
                     <th class="zombie"></th>
                     <th class="from">
                         <%= select_tag 'new-transition-from', new_transition_from_options(transitions) %>
-			</th>
+                    </th>
                     <th>
                         <%= select_tag 'new-transition-to', new_transition_to_options %>
                     </th>
@@ -33,7 +33,7 @@
                             :id => 'link-add-transition'
                         %>
                     </th>
-                    <% else %><th></th>			
+                    <% else %><th></th>
                     <% end %>
                 </tr>
             </thead>
@@ -49,7 +49,7 @@
                     <th class="to" width="35%"><%= l(:time_logger_settings_to_status) %></th>
                     <% if edit_allowed %>
                         <th class="buttons" width="25%"></th>
-                    <% else %><th width="25%"></th>	
+                    <% else %><th width="25%"></th>
                     <% end %>
                 </tr>
             </thead>
@@ -85,7 +85,7 @@
                                                 :class => 'icon icon-del'
                                     %>
                                 </td>
-                            <% else %><td></td>	
+                            <% else %><td></td>
                             <% end %>
                         </tr>
                     <% end %>

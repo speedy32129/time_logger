@@ -83,16 +83,16 @@ the 'New' status will automatically change it to 'In progress'.
 4. Restart your Redmine
 
 === Change History
-0.5.4.0	- Updates
-	re-orginized the settings panels to make room for new transitions.
-	The plan is to add two transitons types.
-		1. for current activity to change the status to.
-			A. For example if original status is Open then change it to In Progress.
-			B. So when the logger is not longer active change it to Open.
+0.5.4.0 - Updates
+    re-orginized the settings panels to make room for new transitions.
+    The plan is to add two transitons types.
+        1. for current activity to change the status to.
+            A. For example if original status is Open then change it to In Progress.
+            B. So when the logger is not longer active change it to Open.
 
-0.5.3 - updates
-	fixed javascript variable declaration
-	added icon sets so user can have more choice with their theme - for now this is to be done manually.  Just delte the icons in /time_logger/assets/images (not the sub-folders)  then copy from one of the sub-folders (colorized or original) into /time_logger/assets/image. 
+0.5.3   - updates
+    fixed javascript variable declaration
+    added icon sets so user can have more choice with their theme - for now this is to be done manually.  Just delte the icons in /time_logger/assets/images (not the sub-folders)  then copy from one of the sub-folders (colorized or original) into /time_logger/assets/image. 
     add TLHelper function back due to problem with time_logger
     fix for missing icons on status transitions
     fixes for status transitions - removal - Special thanks to kotashiratsuka indirectly!!
