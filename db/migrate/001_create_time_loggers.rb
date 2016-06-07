@@ -4,7 +4,7 @@ class CreateTimeLoggers < ActiveRecord::Migration
       t.column :user_id, :integer
       t.column :issue_id, :integer
       t.column :started_on, :datetime
-	  t.column :time_spent, :float, :default => 0
+      t.column :time_spent, :float, :default => 0
       t.column :paused, :boolean, :default => false
     end
   end

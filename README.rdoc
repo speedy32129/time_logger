@@ -84,8 +84,8 @@ the 'New' status will automatically change it to 'In progress'.
 
 === Change History
 0.5.3 - updates
-	fixed javascript variable declaration
-	added icon sets so user can have more choice with their theme - for now this is to be done manually.  Just delte the icons in /time_logger/assets/images (not the sub-folders)  then copy from one of the sub-folders (colorized or original) into /time_logger/assets/image. 
+  fixed javascript variable declaration
+  added icon sets so user can have more choice with their theme - for now this is to be done manually.  Just delte the icons in /time_logger/assets/images (not the sub-folders)  then copy from one of the sub-folders (colorized or original) into /time_logger/assets/image. 
     add TLHelper function back due to problem with time_logger
     fix for missing icons on status transitions
     fixes for status transitions - removal - Special thanks to kotashiratsuka indirectly!!
