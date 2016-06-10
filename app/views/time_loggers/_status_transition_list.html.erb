@@ -1,4 +1,4 @@
-<div id="status-transition-list">
+<!--<div id="status-transition-list">-->
     <% edit_allowed = User.current.admin %>
     <% transitions = transitions.nil? ? {} : transitions %>
     <% has_zombie = false %>
@@ -96,4 +96,4 @@
     <% if has_zombie %>
         <p class="legend icon icon-warning"><%= l(:time_logger_settings_zombie_transition) %></p>
     <% end %>
-</div>
+<!--</div>-->

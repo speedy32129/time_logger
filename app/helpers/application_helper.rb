@@ -16,7 +16,7 @@ module ApplicationHelper
         IssueStatus.find_by_id(status_id)
     end
 
-    def statuses_list()
+    def statuses_list
         IssueStatus.all
     end
 
@@ -26,7 +26,7 @@ module ApplicationHelper
 
     def new_transition_from_options(transitions)
         statuses = []
-        for status in statuses_list()
+        for status in statuses_list
             statuses << status unless transitions.has_key?(status.id.to_s)
             #if !transitions.has_key?(status.id.to_s)
             #    statuses << status
@@ -35,8 +35,8 @@ module ApplicationHelper
         to_status_options(statuses)
     end
 
-    def new_transition_to_options()
-        to_status_options(statuses_list())
+    def new_transition_to_options
+        to_status_options(statuses_list)
     end
 
     def global_allowed_to?(user, action)

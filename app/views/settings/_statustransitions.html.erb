@@ -3,6 +3,7 @@
     <div>
         <p><%= l(:time_logger_settings_transition_msg) %></p>
         <p><%= l(:time_logger_settings_transition_note) %></p>
+        <br />
         <%= render :partial => 'time_loggers/status_transition_list', :locals => { :transitions => @settings['status_transitions'] } %>
     </div>
 </div>

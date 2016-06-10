@@ -1,7 +1,9 @@
+/*
 .icon-clock { background-image: url(../images/clock.gif); }
 .icon-start { background-image: url(../images/time_start.png); }
 .icon-pause { background-image: url(../images/time_pause.png); }
 .icon-stop { background-image: url(../images/time_stop.png); }
+*/
 
 .icon-action {
     background-repeat: no-repeat;
@@ -12,6 +14,10 @@
 .icon-action:hover {
     padding-top: 1px;
     padding-bottom: 4px;
+}
+
+.tabular.settings p {
+    padding-left: 0;
 }
 
 .icon-start-action { background-image: url(../images/start.png); }
@@ -25,7 +31,7 @@
 /* use the one below if you want the time logger in the bottom oon it's own
 #time-logger-menu { position:fixed; bottom:0px; right:8px; background:black; padding:1em; }
 */
-#time-logger-menu a { margin-right: 0px; }
+#time-logger-menu a { margin-right: 0; }
 #time-logger-menu .icon { padding-left: 20px; }
 
 #time-logger-admin td.start-date,
@@ -54,4 +60,6 @@
     text-align: center;
 }
 
-#settings form[action="/settings/plugin/time_logger"] > div + div { display: none } /* Hack to remove the div opened by redmine before rendering the plugin settings partial */
+/*
+#settings form[action="/settings/plugin/time_logger"] > div + div { display: none } /* Hack to remove the div opened by redmine before rendering the plugin settings partial
+*/

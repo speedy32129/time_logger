@@ -35,26 +35,26 @@ class TimeLogger < ActiveRecord::Base
     end
 
     def zombie?
+        zombie = false
         user = help.user_from_id(self.user_id)
         if user.nil? or user.locked?
-            return true
+            zombie =  true
         end
 
         issue = help.issue_from_id(self.issue_id)
         if issue.nil? or !user.allowed_to?(:log_time, issue.project)
-            return true
+            zombie = true
         end
 
-        return false
     end
 
     protected
 
     def running_time
         if paused
-            return 0
+            running_time = 0
         else
-            return ((Time.now.to_i - started_on.to_i) / 3600.0).to_f
+            running_time = ((Time.now.to_i - started_on.to_i) / 3600.0).to_f
         end
     end
 end

@@ -1,8 +1,7 @@
 <% timelogger_configure_tabs = 
     [
         {:name => 'general', :partial => 'settings/general', :label => :label_general},
-        {:name => 'other', :partial => 'settings/statustransitions', :label => :label_other}
+        {:name => 'statustransitions', :partial => 'settings/statustransitions', :label => :time_logger_settings_transition_title}
     ]
 %>
 <%= render_tabs timelogger_configure_tabs %>
-<% <h3><%= l(:time_logger_settings_general_title) %></h3>%>

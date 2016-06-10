@@ -2,7 +2,7 @@
 
 <% has_zombie = false %>
 
-<% if !@user_time_loggers.nil? %>
+<% unless @user_time_loggers.nil? %>
     <div id="user-time-loggers-list">
         <h3><%= l(:time_logger_label_your_time_loggers) %></h3>
         <% if !@user_time_loggers.empty? %>
