@@ -8,6 +8,12 @@
         <%= text_field_tag 'settings[refresh_rate]', @settings['refresh_rate'], { :size => 4 } %>
         (<%= l(:time_logger_seconds) %>)
     </p>
+
+    <p>
+        <%= label_tag 'settings[auto_user_assign]', l(:time_logger_auto_user_assign) %>
+        <%= check_box_tag 'settings[auto_user_assign]', @settings['auto_user_assign'], @settings['auto_user_assign'] %>
+        <%= l(:time_logger_auto_user_assign_help) %>
+    </p>
 </div>
 
 <h3><%= l(:time_logger_settings_transition_title) %></h3>

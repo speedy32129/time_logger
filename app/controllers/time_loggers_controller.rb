@@ -19,6 +19,7 @@ class TimeLoggersController < ApplicationController
 
             if @time_logger.save
                 apply_status_transition(@issue) unless Setting.plugin_time_logger['status_transitions'] == nil
+                apply_auto_user_assign(@issue) unless Setting.plugin_time_logger['auto_user_assign'] == nil
                 render_menu
             else
                 flash[:error] = l(:start_time_logger_error)
@@ -70,10 +71,10 @@ class TimeLoggersController < ApplicationController
             hours = @time_logger.hours_spent.round(2)
             @time_logger.destroy
 
-            redirect_to :controller => 'issues', 
+            redirect_to :controller => 'issues',
                 :protocol => Setting.protocol,
-                :action => 'edit', 
-                :id => issue_id, 
+                :action => 'edit',
+                :id => issue_id,
                 :time_entry => { :hours => hours }
         end
     end
@@ -109,4 +110,12 @@ class TimeLoggersController < ApplicationController
             @issue.save
         end
     end
+
+    def apply_auto_user_assign(issue)
+      if @issue.assigned_to.class.name.downcase == "group"
+            @issue.assigned_to = User.current
+            @issue.save
+      end
+    end
+
 end
