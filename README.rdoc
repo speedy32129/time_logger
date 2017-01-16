@@ -79,7 +79,7 @@ the 'New' status will automatically change it to 'In progress'.
 
 1. Open a shell to your Redmine's <tt>/plugins/time_logger</tt> folder
 2. Update your git copy with <tt>git pull</tt>
-3. Update the database using the migrations. <tt>rake db:migrate_plugins RAILS_ENV=production</tt>
+3. Update the database using the migrations. <tt>rake redmine:plugins RAILS_ENV=production</tt>
 4. Restart your Redmine
 
 === Change History
