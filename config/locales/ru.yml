@@ -39,4 +39,4 @@ ru:
   time_logger_settings_unknown_status: "Неизвестный статус"
   time_logger_settings_zombie_transition: "zombie status transition"
   time_logger_zombie_legend: "zombie time tracker"
-
+  time_logger_list_title: "Таймеры трудозатрат"

@@ -19,7 +19,7 @@ The newest version is always at {GitHub}[http://github.com/speedy32129/time_logg
 == Install
 
 1. Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins Make sure the plugin is installed to <tt>plugins/time_logger</tt>
-2. Setup the database using the migrations. <tt>rake redmine:plugins:migrate RAILS_ENV=production</tt>
+2. Setup the database using the migrations. <tt>rake redmine:plugins RAILS_ENV=production</tt>
 3. Login to your Redmine install as an Administrator
 4. Setup the 'log time' permissions for your roles
 5. Add "Time tracking" to the enabled modules for your project
@@ -79,7 +79,7 @@ the 'New' status will automatically change it to 'In progress'.
 
 1. Open a shell to your Redmine's <tt>/plugins/time_logger</tt> folder
 2. Update your git copy with <tt>git pull</tt>
-3. Update the database using the migrations. <tt>rake db:migrate_plugins RAILS_ENV=production</tt>
+3. Update the database using the migrations. <tt>rake redmine:plugins RAILS_ENV=production</tt>
 4. Restart your Redmine
 
 === Change History
