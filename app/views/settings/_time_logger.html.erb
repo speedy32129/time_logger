@@ -10,7 +10,7 @@
   </p>
   <p>
     <%= label_tag 'settings[redirect_to_new_time_entry]', l(:time_logger_settings_redirect_to_new_time_entry) %>
-    <%= check_box_tag 'settings[redirect_to_new_time_entry]', @settings['redirect_to_new_time_entry'], Setting.plugin_time_logger['redirect_to_new_time_entry'] %>
+    <%= check_box_tag 'settings[redirect_to_new_time_entry]', @settings['redirect_to_new_time_entry'], @settings['redirect_to_new_time_entry'] %>
   </p>
 </div>
 
