@@ -40,4 +40,4 @@ en:
   time_logger_settings_unknown_status: "Unknown status"
   time_logger_settings_zombie_transition: "zombie status transition"
   time_logger_zombie_legend: "zombie time tracker"
-
+  time_logger_settings_redirect_to_new_time_entry: "Redirect to new time entry instead of edit issue"

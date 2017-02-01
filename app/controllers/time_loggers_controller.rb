@@ -70,11 +70,21 @@ class TimeLoggersController < ApplicationController
             hours = @time_logger.hours_spent.round(2)
             @time_logger.destroy
 
-            redirect_to :controller => 'issues', 
-                :protocol => Setting.protocol,
-                :action => 'edit', 
-                :id => issue_id, 
-                :time_entry => { :hours => hours }
+            redirect_to_new_time_entry = Setting.plugin_time_logger['redirect_to_new_time_entry']
+
+            if redirect_to_new_time_entry
+                redirect_to :controller => 'timelog',
+                            :protocol => Setting.protocol,
+                            :action => 'new',
+                            :issue_id => issue_id,
+                            :time_entry => { :hours => hours }
+            else
+                redirect_to :controller => 'issues',
+                    :protocol => Setting.protocol,
+                    :action => 'edit',
+                    :id => issue_id,
+                    :time_entry => { :hours => hours }
+            end
         end
     end
 
