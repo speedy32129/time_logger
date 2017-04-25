@@ -6,11 +6,11 @@ This is needed as we want several links for our time tracker menu item.
 The span is populated with current time tracker state.
 (no AJAX request here, this allows to have the time tracker immediately visible)
 -->
-<%= javascript_tag "jQuery(document).ready(function($){
+    <%= javascript_tag "jQuery(document).ready(function($){
     $('#time-logger-menu').html(
     '<span id=\"time-logger-menu\">#{escape_javascript(((render :partial => 'time_loggers/embed_menu').delete "\n").strip)}</span>');
     });"
-%>
+    %>
 
 <!--
 This script defines the updateTimeLoggerMenu() function which will update

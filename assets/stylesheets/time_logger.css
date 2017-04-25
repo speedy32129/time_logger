@@ -1,32 +1,49 @@
-.icon-clock { background-image: url(../images/clock.gif); }
-.icon-start { background-image: url(../images/time_start.png); }
-.icon-pause { background-image: url(../images/time_pause.png); }
-.icon-stop { background-image: url(../images/time_stop.png); }
+.icon-clock {
+    background-image: url(../images/colorized/clock.gif);
+}
+
+.icon-start {
+    background-image: url(../images/colorized/time_start.png);
+}
+
+.icon-pause {
+    background-image: url(../images/colorized/time_pause.png);
+}
+
+.icon-stop {
+    background-image: url(../images/colorized/time_stop.png);
+}
 
 .icon-action {
     background-repeat: no-repeat;
     padding-left: 16px;
-    padding-top: 2px;
-    padding-bottom: 3px;
-}
-.icon-action:hover {
-    padding-top: 1px;
-    padding-bottom: 4px;
+    padding-right: 5px;
+    margin-bottom: -7px;
 }
 
-.icon-start-action { background-image: url(../images/start.png); }
-.icon-pause-action { background-image: url(../images/pause.png); }
-.icon-stop-action { background-image: url(../images/stop.png); }
-.icon-list-action { background-image: url(../images/list.png); }
+/*.icon-action:hover {*/
+    /*border: 1px solid #5bc0de;*/
+/*}*/
 
-/* use this if you want the logger in top bar */
-#time-logger-menu { margin-right: 8px; }
+.icon-start-action {
+    background-image: url(../images/colorized/start.png);
+}
+
+.icon-pause-action {
+    background-image: url(../images/colorized/pause.png);
+}
+
+.icon-stop-action {
+    background-image: url(../images/colorized/stop.png);
+}
+
+.icon-list-action {
+    background-image: url(../images/colorized/list.png);
+}
 
 /* use the one below if you want the time logger in the bottom oon it's own
 #time-logger-menu { position:fixed; bottom:0px; right:8px; background:black; padding:1em; }
 */
-#time-logger-menu a { margin-right: 0px; }
-#time-logger-menu .icon { padding-left: 20px; }
 
 #time-logger-admin td.start-date,
 #time-logger-admin td.spent-time,
@@ -50,8 +67,13 @@
 #status-transition-list td.zombie {
     font-style: italic;
 }
+
 #status-transition-list td.msg {
     text-align: center;
 }
 
-#settings form[action="/settings/plugin/time_logger"] > div + div { display: none } /* Hack to remove the div opened by redmine before rendering the plugin settings partial */
+#settings form[action="/settings/plugin/time_logger"] > div + div {
+    display: none
+}
+
+/* Hack to remove the div opened by redmine before rendering the plugin settings partial */
