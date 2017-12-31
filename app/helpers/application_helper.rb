@@ -1,5 +1,12 @@
 module ApplicationHelper
 
+    def get_refresh_rate
+        minimum_refresh_rate = 5
+        default_refresh_rate = 60
+        current_refresh_rate = Setting.plugin_time_logger['refresh_rate'].to_i == 0 ? default_refresh_rate : Setting.plugin_time_logger['refresh_rate'].to_i
+        1000 * [current_refresh_rate, minimum_refresh_rate].max
+    end
+
     def time_logger_for(user)
         TimeLogger.find_by_user_id(user.id)
     end

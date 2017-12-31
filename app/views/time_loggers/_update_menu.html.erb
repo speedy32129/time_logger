@@ -33,6 +33,6 @@ $.ajax({
 This script periodically updates the time tracker menu item to reflect any changes in the tracking state
 Refresh rate is taken from settings. If settings is invalid, 60 secs is used. The minimum value is 5 secs.
 -->
-<%= javascript_tag "var timer = setInterval(updateTimeLoggerMenu, 60000);" %>
+<%= javascript_tag "var timer = setInterval(updateTimeLoggerMenu, parseInt(\"#{get_refresh_rate}\"));" %>
 
 <% end %>
