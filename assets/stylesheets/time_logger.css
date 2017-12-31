@@ -28,6 +28,14 @@
 #time-logger-menu a { margin-right: 0px; }
 #time-logger-menu .icon { padding-left: 20px; }
 
+.flyout-menu #time-logger-menu a { display: inline; }
+
+.flyout-menu #time-logger-menu .icon-action {
+    background-position: right center;
+    background-size: 20px 20px;
+    padding-left: 25px;
+}
+
 #time-logger-admin td.start-date,
 #time-logger-admin td.spent-time,
 #time-logger-admin td.msg {
