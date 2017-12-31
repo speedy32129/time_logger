@@ -10,4 +10,4 @@ es:
   time_logger_refresh_rate: "Frecuencia de refresco"
   time_logger_seconds: "segundos"
   time_logger_show_pause: "Show pause option"
-
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"

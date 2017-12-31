@@ -23,6 +23,7 @@ ru:
   time_logger_label_transition_journal: "Статус изменен автоматически в связи с запуском учета времени."
   time_logger_label_your_time_loggers: "Ваши таймеры"
   time_logger_label_other_time_loggers: "Таймеры других пользователей"
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"
   time_logger_not_running: "Остановлен"
   time_logger_refresh_rate: "Частота обновления"
   time_logger_seconds: "секунды"

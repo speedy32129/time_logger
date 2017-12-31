@@ -23,6 +23,7 @@ ja:
   time_logger_label_transition_journal: "作業時間の記録が開始された為、ステータスを移行しました。"
   time_logger_label_your_time_loggers: "自分"
   time_logger_label_other_time_loggers: "他のユーザー"
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"
   time_logger_list_title: "記録中の作業時間"
   time_logger_not_running: "停止中"
   time_logger_refresh_rate: "更新間隔"

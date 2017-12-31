@@ -23,6 +23,7 @@ nl:
   time_logger_label_transition_journal: "Status automatisch gewijzigd doordat een timer is gestart."
   time_logger_label_your_time_loggers: "Mijn timer"
   time_logger_label_other_time_loggers: "Timers van andere gebruikers"
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"
   time_logger_list_title: "Timers"
   time_logger_not_running: "Timer niet gestart"
   time_logger_refresh_rate: "Vernieuwingsfrequentie"

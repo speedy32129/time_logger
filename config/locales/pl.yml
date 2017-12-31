@@ -23,6 +23,7 @@ pl:
   time_logger_label_transition_journal: "Automatyczna zmiana statusu w związku z rozpoczęciem zliczania czasu."
   time_logger_label_your_time_loggers: "Twój licznik czasu"
   time_logger_label_other_time_loggers: "Liczniki czasu innych użytkowników"
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"
   time_logger_list_title: "Liczniki czasu"
   time_logger_not_running: "Licznik nieaktywny"
   time_logger_refresh_rate: "Częstotliwość odświeżania"

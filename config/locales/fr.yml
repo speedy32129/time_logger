@@ -23,6 +23,7 @@ fr:
   time_logger_label_transition_journal: "Changement de status appliqué automatiquement dû au démarrage d'un traqueur de temps."
   time_logger_label_your_time_loggers: "Votre traqueur de temps"
   time_logger_label_other_time_loggers: "Traqueurs de temps des autres utilisateurs"
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"
   time_logger_list_title: "Traqueurs de temps"
   time_logger_not_running: "Arrêté"
   time_logger_refresh_rate: "Taux de rafraîchissement"

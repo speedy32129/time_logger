@@ -23,6 +23,7 @@ it:
   time_logger_label_transition_journal: "Stato di transizione applicato automaticamente dall'avvio di un time tracker."
   time_logger_label_your_time_loggers: "Il tuo time tracker"
   time_logger_label_other_time_loggers: "Il time tracker di altri utenti"
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"
   time_logger_list_title: "Time trackers"
   time_logger_not_running: "Non in esecuzione"
   time_logger_refresh_rate: "Refresh rate"

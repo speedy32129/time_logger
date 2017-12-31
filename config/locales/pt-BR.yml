@@ -42,5 +42,6 @@ pt-BR:
   time_logger_label_transition_journal: "Transição de status aplicada automaticamente devido ao início do time tracker."
   time_logger_label_your_time_loggers: "Seus time tracker"
   time_logger_label_other_time_loggers: "Time trackers de outros usuários"
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"
   time_logger_list_title: "Time trackers"
 

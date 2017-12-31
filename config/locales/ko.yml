@@ -23,6 +23,7 @@ ko:
   time_logger_label_transition_journal: "추적자의  시작으로 상태 전환이 자동으로 적용되었습니다."
   time_logger_label_your_time_loggers: "당신의 추적자"
   time_logger_label_other_time_loggers: "다른 사용자의 추적자"
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"
   time_logger_list_title: "추적자"
   time_logger_not_running: "중지중..."
   time_logger_refresh_rate: "갱신 시간"

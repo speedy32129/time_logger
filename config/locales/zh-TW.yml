@@ -14,6 +14,7 @@ zh-TW:
   time_logger_label_start_date: "開始日期"
   time_logger_label_action: "執行"
   time_logger_label_delete: "刪除"
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"
   time_logger_label_transition_journal: "狀態於計時開始時自動改變"
   time_logger_delete_success: "刪除計時成功"
   time_logger_delete_fail: "計時已結束或被刪除"

@@ -14,6 +14,7 @@ pt:
   time_logger_label_start_date: "Data inicial"
   time_logger_label_action: "Acção"
   time_logger_label_delete: "Eliminar"
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"
   time_logger_delete_success: "Time tracker eliminado com sucesso"
   time_logger_delete_fail: "O time tracker já foi fechado/eliminado"
   time_logger_zombie_legend: "time tracker zombie"

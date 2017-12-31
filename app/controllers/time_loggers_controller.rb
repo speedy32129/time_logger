@@ -4,10 +4,12 @@ class TimeLoggersController < ApplicationController
     def index
         if User.current.nil?
             @user_time_loggers = nil
-            @time_loggers = TimeLogger.all
+            @time_loggers = TimeLogger.where(paused: 0)
+            @paused_time_loggers = TimeLogger.where(paused: 1)
         else
             @user_time_loggers = TimeLogger.where(user_id: User.current.id)
-            @time_loggers = TimeLogger.where('user_id != ?', User.current.id)
+            @time_loggers = TimeLogger.where('paused = 0 and user_id != ?', User.current.id)
+            @paused_time_loggers = TimeLogger.where('paused = 1 and user_id != ?', User.current.id)
         end
     end
 

@@ -23,6 +23,7 @@ sk:
   time_logger_label_transition_journal: "Prechod stavu je použitý automaticky pri spustení sledovania času v úlohe."
   time_logger_label_your_time_loggers: "Vaše sledovanie času"
   time_logger_label_other_time_loggers: "Sledovanie času ostatných užívateľov"
+  time_logger_label_paused_time_loggers: "Other user's paused time trackers"
   time_logger_list_title: "Sledovanie času"
   time_logger_not_running: "Nebeží"
   time_logger_refresh_rate: "Frekvencia obnovenia"
