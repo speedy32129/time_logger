@@ -39,5 +39,6 @@ fr:
   time_logger_settings_transition_title: "Changements de status"
   time_logger_settings_unknown_status: "Status inconnu"
   time_logger_settings_zombie_transition: "changement de status zombie"
+  time_logger_show_pause: "Show pause option"
   time_logger_zombie_legend: "traqueur de temps zombie"
 

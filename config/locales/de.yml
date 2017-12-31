@@ -41,5 +41,6 @@ de:
   time_logger_settings_transition_title: "Statusänderungen"
   time_logger_settings_unknown_status: "Unbekannter Status"
   time_logger_settings_zombie_transition: "Zombie Statusänderung"
+  time_logger_show_pause: "Show pause option"
   time_logger_zombie_legend: "Zombie Zeiterfassung"
 

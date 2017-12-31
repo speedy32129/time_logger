@@ -39,5 +39,6 @@ cs:
   time_logger_settings_transition_title: "Přechod stavu"
   time_logger_settings_unknown_status: "Neznámý stav"
   time_logger_settings_zombie_transition: "zombie přechod stavu"
+  time_logger_show_pause: "Show pause option"
   time_logger_zombie_legend: "zombie sledování času"
 

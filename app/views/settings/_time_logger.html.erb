@@ -4,6 +4,10 @@
 
 <div class="box tabular">
     <p>
+        <%= label_tag 'settings[show_pause]', l(:time_logger_show_pause) %>
+        <%= check_box_tag 'settings[show_pause]', 1, @settings['show_pause'] %>
+    </p>
+    <p>
         <%= label_tag 'settings[refresh_rate]', l(:time_logger_refresh_rate) %>
         <%= text_field_tag 'settings[refresh_rate]', @settings['refresh_rate'], { :size => 4 } %>
         (<%= l(:time_logger_seconds) %>)

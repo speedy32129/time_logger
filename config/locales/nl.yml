@@ -39,5 +39,6 @@ nl:
   time_logger_settings_transition_title: "Status wijzigingen"
   time_logger_settings_unknown_status: "Onbekende status"
   time_logger_settings_zombie_transition: "zombie statuswijziging"
+  time_logger_show_pause: "Show pause option"
   time_logger_zombie_legend: "zombie timer"
 

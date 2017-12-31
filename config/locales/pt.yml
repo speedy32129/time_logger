@@ -28,5 +28,6 @@ pt:
   time_logger_settings_new_transition_to: "para"
   time_logger_settings_new_transition_add: "Adicionar transição"
   time_logger_settings_unknown_status: "Estado desconhecido"
+  time_logger_show_pause: "Show pause option"
   time_logger_settings_zombie_transition: "transição de estado zombie"
 

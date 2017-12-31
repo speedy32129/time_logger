@@ -45,18 +45,22 @@ class TimeLoggersController < ApplicationController
     end
 
     def suspend
-        @time_logger = current
-        if @time_logger.nil? or @time_logger.paused
-            flash[:error] = l(:no_time_logger_running)
-            redirect_to :back
-        else
-            @time_logger.time_spent = @time_logger.hours_spent
-            @time_logger.paused = true
-            if @time_logger.save
-                render_menu
+        if Setting.plugin_time_logger['show_pause']
+            @time_logger = current
+            if @time_logger.nil? or @time_logger.paused
+                flash[:error] = l(:no_time_logger_running)
+                redirect_to :back
             else
-                flash[:error] = l(:suspend_time_logger_error)
+                @time_logger.time_spent = @time_logger.hours_spent
+                @time_logger.paused = true
+                if @time_logger.save
+                    render_menu
+                else
+                    flash[:error] = l(:suspend_time_logger_error)
+                end
             end
+        else
+            flash[:error] = l(:suspend_time_logger_error)
         end
     end
 

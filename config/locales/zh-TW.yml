@@ -29,5 +29,6 @@ zh-TW:
   time_logger_settings_new_transition_to: "新狀態"
   time_logger_settings_new_transition_add: "新增狀態異動"
   time_logger_settings_unknown_status: "未知狀態"
+  time_logger_show_pause: "Show pause option"
   time_logger_settings_zombie_transition: "殭屍狀態異動"
 

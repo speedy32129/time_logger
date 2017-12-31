@@ -39,5 +39,6 @@ pl:
   time_logger_settings_transition_title: "Przejścia między statusami"
   time_logger_settings_unknown_status: "Nieznany status"
   time_logger_settings_zombie_transition: "przejście nieaktualne"
+  time_logger_show_pause: "Show pause option"
   time_logger_zombie_legend: "niepowiązany licznik czasu"
 

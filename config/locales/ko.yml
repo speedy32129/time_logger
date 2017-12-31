@@ -39,5 +39,6 @@ ko:
   time_logger_settings_transition_title: "상태 전환"
   time_logger_settings_unknown_status: "알 수 없는 상태"
   time_logger_settings_zombie_transition: "좀비 상태 전환"
+  time_logger_show_pause: "Show pause option"
   time_logger_zombie_legend: "좀비 추적자"
 

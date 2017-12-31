@@ -39,5 +39,6 @@ ja:
   time_logger_settings_transition_title: "ステータスの移行"
   time_logger_settings_unknown_status: "不明なステータス"
   time_logger_settings_zombie_transition: "ゾンビステータスの移行"
+  time_logger_show_pause: "Show pause option"
   time_logger_zombie_legend: "ゾンビ"
 

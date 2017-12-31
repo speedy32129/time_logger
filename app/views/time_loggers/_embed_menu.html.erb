@@ -26,13 +26,15 @@
             { :class => 'icon icon-clock' }
         %>
          / <%= time_logger.time_spent_to_s %> /
-        <%= link_to '',
-            { :controller => '/time_loggers', :action => 'suspend' },
-            :class => 'icon-action icon-pause-action',
-            :title => l(:suspend_time_logger),
-            :"data-replace" => '#time-logger-menu',
-            :remote => true
-        %>
+        <% if Setting.plugin_time_logger['show_pause'] %>
+            <%= link_to '',
+                { :controller => '/time_loggers', :action => 'suspend' },
+                :class => 'icon-action icon-pause-action',
+                :title => l(:suspend_time_logger),
+                :"data-replace" => '#time-logger-menu',
+                :remote => true
+            %>
+        <% end %>
         <%= link_to '',
             { :controller => '/time_loggers', :action => 'stop' },
             { :class => 'icon-action icon-stop-action', :title => l(:stop_time_logger) }
