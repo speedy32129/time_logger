@@ -11,6 +11,7 @@
         %>
         </li>
     <% else %>
+        <% if Setting.plugin_time_logger['show_pause'] %>
         <%# A time tracker is not paused, display the suspend action %>
         <li>
         <%= link_to l(:suspend_time_logger).capitalize + ' #' + time_logger.issue_id.to_s,
@@ -20,6 +21,7 @@
             :remote => true
         %>
         </li>
+        <% end %>
     <% end %>
 
     <%# A time tracker exists, display the stop action %>
