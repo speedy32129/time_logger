@@ -8,8 +8,8 @@ class TimeLoggersController < ApplicationController
             @paused_time_loggers = TimeLogger.where(paused: 1)
         else
             @user_time_loggers = TimeLogger.where(user_id: User.current.id)
-            @time_loggers = TimeLogger.where('paused = 0 and user_id != ?', User.current.id)
-            @paused_time_loggers = TimeLogger.where('paused = 1 and user_id != ?', User.current.id)
+            @time_loggers = TimeLogger.where('paused = false and user_id != ?', User.current.id)
+            @paused_time_loggers = TimeLogger.where('paused = true and user_id != ?', User.current.id)
         end
     end
 
