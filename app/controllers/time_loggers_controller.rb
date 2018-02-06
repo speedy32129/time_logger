@@ -93,10 +93,10 @@ class TimeLoggersController < ApplicationController
         if !time_logger.nil?
             time_logger.destroy
             flash[:notice] = l(:time_logger_delete_success)
-            redirect_back_or_default time_loggers_path
+            redirect_to time_loggers_path
         else
             flash[:error] = l(:time_logger_delete_fail)
-            redirect_back_or_default time_loggers_path
+            redirect_to time_loggers_path
         end
     end
 
