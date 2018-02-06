@@ -12,12 +12,10 @@ class TimeLogger < ActiveRecord::Base
     belongs_to :user
     has_one :issue
 
-    validates_presence_of :issue
-
     def initialize(arguments = nil)
         super(arguments)
         self.user_id = User.current.id
-        self.started_on = Time.now
+        self.started_on = Time.now.utc
         self.time_spent = 0.0
         self.paused = false
     end
@@ -53,7 +51,7 @@ class TimeLogger < ActiveRecord::Base
         if paused
             return 0
         else
-            return ((Time.now.to_i - started_on.to_i) / 3600.0).to_f
+            return ((Time.now.utc.to_i - started_on.utc.to_i) / 3600.0).to_f
         end
     end
 end
