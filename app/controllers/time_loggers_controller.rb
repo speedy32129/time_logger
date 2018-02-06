@@ -92,9 +92,11 @@ class TimeLoggersController < ApplicationController
         time_logger = TimeLogger.find_by_id(params[:id])
         if !time_logger.nil?
             time_logger.destroy
-            render :text => l(:time_logger_delete_success)
+            flash[:notice] = l(:time_logger_delete_success)
+            redirect_back_or_default time_loggers_path
         else
-            render :text => l(:time_logger_delete_fail)
+            flash[:error] = l(:time_logger_delete_fail)
+            redirect_back_or_default time_loggers_path
         end
     end
 
