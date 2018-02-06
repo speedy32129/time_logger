@@ -1,4 +1,4 @@
-class CreateTimeLoggers < ActiveRecord::Migration
+class CreateTimeLoggers < ActiveRecord::Migration[4.2]
   def self.up
     create_table :time_loggers do |t|
       t.column :user_id, :integer

@@ -12,8 +12,7 @@ class TimeLogger < ActiveRecord::Base
     belongs_to :user
     has_one :issue
 
-    attr_accessible :issue_id
-    validates_presence_of :issue_id
+    validates_presence_of :issue
 
     def initialize(arguments = nil)
         super(arguments)
