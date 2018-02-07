@@ -15,7 +15,7 @@ class TimeLogger < ActiveRecord::Base
     def initialize(arguments = nil)
         super(arguments)
         self.user_id = User.current.id
-        self.started_on = Time.now.utc
+        self.started_on = DateTime.now
         self.time_spent = 0.0
         self.paused = false
     end
@@ -42,16 +42,16 @@ class TimeLogger < ActiveRecord::Base
             return true
         end
 
-        return false
+        false
     end
 
     protected
 
     def running_time
         if paused
-            return 0
+            0
         else
-            return ((Time.now.utc.to_i - started_on.utc.to_i) / 3600.0).to_f
+            ((DateTime.now.to_i - started_on.to_i) / 3600.0).to_f
         end
     end
 end
