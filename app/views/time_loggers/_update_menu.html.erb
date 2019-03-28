@@ -20,8 +20,8 @@ the time tracker menu item using an AJAX request to retrieve the data
 function updateTimeLoggerMenu() {
 $.ajax({
     url:"<%=url_for :controller => '/time_loggers',:action => 'render_menu' %>",
-    data:({<%= (@project.nil? ? nil : "project_id:#{@project.id},") %><%= (@issue.nil? ? nil : "issue_id:#{@issue.id}") %> }),
-    cache:false,
+    data:({<%= (@project.nil? ? nil : "project_id:#{@project.id}") %><%= ((@issue.nil? or @issue.id.nil?) ? nil : ", issue_id:#{@issue.id}") %>}), 
+	cache:false,
     success: function(data){
         $('#time-logger-menu').html(data);
     },
