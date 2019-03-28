@@ -13,7 +13,7 @@ Redmine::Plugin.register :time_logger do
     author 'Jim McAleer'
     description 'The orignal author was Jérémie Delaitre.'
     url 'https://github.com/speedy32129/time_logger'
-    version '0.5.4.0'
+    version '0.5.4'
 
 
     #fix for contect menus
@@ -25,7 +25,7 @@ Redmine::Plugin.register :time_logger do
     permission :view_others_time_loggers, :time_loggers => :index
     permission :delete_others_time_loggers, :time_loggers => :delete
 
-    menu :account_menu, :time_logger_menu, '',
+    menu :account_menu, :time_logger_menu, 'javascript:void(0)',
         {
             :caption => '',
             :html => { :id => 'time-logger-menu' },
