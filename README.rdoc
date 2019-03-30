@@ -38,7 +38,8 @@ The newest version is always at {GitHub}[http://github.com/speedy32129/time_logg
 == Uninstall 
 
 1. Run <tt>rake db:migrate:plugin NAME=time_logger VERSION=0 RAILS_ENV=production</tt>
-2. Delete folder <tt><redmine_root>/plugins/time_logger</tt> 
+2. Delete folder <tt><redmine_root>/plugins/time_logger</tt>
+3. You'll also have to remove ../public/plugin_assets/time_logger !!! This is a Rails bug and hasn't been fix for some time.
 
 Note: is show display message: Note: The rake task db:migrate:plugin has been deprecated, please use the replacement version redmine:plugins:migrate
 not alarmed, the plugins already uninstalled.
@@ -83,6 +84,8 @@ the 'New' status will automatically change it to 'In progress'.
 4. Restart your Redmine
 
 === Change History
+0.5.4 - updates
+  --To Do ---
 0.5.3 - updates
   fixed javascript variable declaration
   added icon sets so user can have more choice with their theme - for now this is to be done manually.  Just delte the icons in /time_logger/assets/images (not the sub-folders)  then copy from one of the sub-folders (colorized or original) into /time_logger/assets/image. 
