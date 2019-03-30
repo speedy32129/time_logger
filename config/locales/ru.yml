@@ -40,3 +40,4 @@ ru:
   time_logger_settings_zombie_transition: "zombie status transition"
   time_logger_zombie_legend: "zombie time tracker"
   time_logger_list_title: "Таймеры трудозатрат"
+  time_logger_settings_redirect_to_new_time_entry: "Перенаправлять на новый объект трудозатрат, вместо редактирования задачи"

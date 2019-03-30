@@ -34,7 +34,7 @@
                                     <%= link_to l(:time_logger_label_delete),
                                         {:controller => '/time_loggers', :action => 'delete', :id => time_logger.id },
                                         :class => 'icon icon-del',
-                                        :remote => true,
+                                        :remote => false,
                                         :complete => "$('#{'user-timetracker' + time_logger.id.to_s}').update('<td colspan=\"0\" class=\"msg\">' + request.responseText + '</td>');"
                                     %>
                                 </td>

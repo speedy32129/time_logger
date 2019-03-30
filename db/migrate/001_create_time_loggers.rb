@@ -1,11 +1,11 @@
-class CreateTimeLoggers < ActiveRecord::Migration
+class CreateTimeLoggers < ActiveRecord::Migration[4.2]
   def self.up
     create_table :time_loggers do |t|
       t.column :user_id, :integer
       t.column :issue_id, :integer
       t.column :started_on, :datetime
-      t.column :time_spent, :float, :default => 0
-      t.column :paused, :boolean, :default => false
+      t.column :time_spent, :float, default: 0
+      t.column :paused, :boolean, default: false
     end
   end
 
