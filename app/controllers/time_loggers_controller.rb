@@ -110,6 +110,15 @@ class TimeLoggersController < ApplicationController
     render partial: 'embed_menu'
   end
 
+  def current_timer
+    @time_logger = current
+    if @time_logger.nil?
+        render json: {}
+    else
+        render json: { "time_spent" => @time_logger.time_spent_to_s }
+    end
+  end
+
   protected
 
   def current

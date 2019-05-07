@@ -26,6 +26,23 @@ $.ajax({
         $('#time-logger-menu').html(data);
     },
 });
+
+$.ajax({
+    url:"<%=url_for :controller => '/time_loggers',:action => 'current_timer' %>",
+    cache:false,
+    success: function(data){
+        if (!data.hasOwnProperty('time_spent')) {
+            return;
+        }
+        var r = /^([0-9]+:[0-9]+) (.*)$/g;
+        var match = r.exec(document.title);
+        if (match) {
+            document.title = data['time_spent'] + ' ' + match[2];
+        } else {
+            document.title = data['time_spent'] + ' ' + document.title;
+        }
+    },
+});
 }
 <% end %>
 

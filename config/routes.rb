@@ -5,6 +5,7 @@ if Rails::VERSION::MAJOR >= 4
     match 'time_loggers/suspend', to: 'time_loggers#suspend', via: %i[get post]
     match 'time_loggers/resume', to: 'time_loggers#resume', via: %i[get post]
     match 'time_loggers/render_menu', to: 'time_loggers#render_menu', via: %i[get post]
+    match 'time_loggers/current_timer', to: 'time_loggers#current_timer', via: %i[get post]
     match 'time_loggers/add_status_transition', to: 'time_loggers#add_status_transition', via: %i[get post]
     match 'time_loggers/delete_status_transition', to: 'time_loggers#delete_status_transition', via: %i[get post]
     match 'time_loggers/show_report', to: 'time_loggers#show_report', via: %i[get post]
@@ -18,6 +19,7 @@ elsif Rails::VERSION::MAJOR >= 3
     match 'time_loggers/suspend', to: 'time_loggers#suspend'
     match 'time_loggers/resume', to: 'time_loggers#resume'
     match 'time_loggers/render_menu', to: 'time_loggers#render_menu'
+    match 'time_loggers/current_timer', to: 'time_loggers#current_timer'
     match 'time_loggers/add_status_transition', to: 'time_loggers#add_status_transition'
     match 'time_loggers/delete_status_transition', to: 'time_loggers#delete_status_transition'
     match 'time_loggers/show_report', to: 'time_loggers#show_report'
