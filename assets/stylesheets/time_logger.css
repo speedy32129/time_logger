@@ -1,3 +1,8 @@
+.icon {
+    display: inline !important;
+    padding-left: 20px !important;
+}
+
 .icon-clock {
     background-image: url(../images/colorized/clock.gif);
 }
@@ -15,10 +20,13 @@
 }
 
 .icon-action {
+    background-position: left;
     background-repeat: no-repeat;
-    padding-left: 16px;
+    display: inline !important;
+    padding-left: 20px !important;
     padding-right: 5px;
     margin-bottom: -7px;
+    margin-right: 0px !important;
 }
 
 /*.icon-action:hover {*/
