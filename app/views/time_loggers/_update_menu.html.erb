@@ -20,7 +20,7 @@ the time tracker menu item using an AJAX request to retrieve the data
 function updateTimeLoggerMenu() {
 $.ajax({
     url:"<%=url_for :controller => '/time_loggers',:action => 'render_menu' %>",
-    data:({<%= (@project.nil? ? nil : "project_id:#{@project.id},") %><%= (@issue.nil? ? nil : "issue_id:#{@issue.id}") %> }),
+    data:({<%= (@project.nil? ? nil : "project_id:#{@project.id}") %><%= ((@issue.nil? or @issue.id.nil?) ? nil : ", issue_id:#{@issue.id}") %>}),
     cache:false,
     success: function(data){
         $('#time-logger-menu').html(data);
@@ -29,13 +29,15 @@ $.ajax({
 }
 <% end %>
 
-<!--
-This script periodically updates the time tracker menu item to reflect any changes in the tracking state
-Refresh rate is taken from settings. If settings is invalid, 60 secs is used. The minimum value is 5 secs.
--->
-<%= cache [Setting[:plugin_time_logger][:refresh_rate].to_i, "time_loger_refresh_rate"] do %>
-    <% update_rate = Setting[:plugin_time_logger][:refresh_rate].to_i * 1000 %>
-    <%= javascript_tag "var timer = setInterval(updateTimeLoggerMenu, #{update_rate});" %>
+  <!--
+  This script periodically updates the time tracker menu item to reflect any changes in the tracking state
+  Refresh rate is taken from settings. If settings is invalid, 60 secs is used. The minimum value is 5 secs.
+  -->
+  <%= cache [Setting[:plugin_time_logger]["refresh_rate"].to_i, "time_logger_refresh_rate"] do %>
+    <% update_rate = Setting[:plugin_time_logger]["refresh_rate"].to_i %>
+    <%= javascript_tag "var timer = setInterval(updateTimeLoggerMenu, #{update_rate >= 5 ? update_rate : 60} * 1000);" %>
 <% end %>
+
+
 
 <% end %>
