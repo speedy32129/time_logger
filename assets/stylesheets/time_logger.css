@@ -1,17 +1,17 @@
 .icon-clock {
-    background-image: url(../images/colorized/clock.gif);
+    background-image: url(../images/clock.gif);
 }
 
 .icon-start {
-    background-image: url(../images/colorized/time_start.png);
+    background-image: url(../images/time_start.png);
 }
 
 .icon-pause {
-    background-image: url(../images/colorized/time_pause.png);
+    background-image: url(../images/time_pause.png);
 }
 
 .icon-stop {
-    background-image: url(../images/colorized/time_stop.png);
+    background-image: url(../images/time_stop.png);
 }
 
 .icon-action {
@@ -26,19 +26,19 @@
 /*}*/
 
 .icon-start-action {
-    background-image: url(../images/colorized/start.png);
+    background-image: url(../images/start.png);
 }
 
 .icon-pause-action {
-    background-image: url(../images/colorized/pause.png);
+    background-image: url(../images/pause.png);
 }
 
 .icon-stop-action {
-    background-image: url(../images/colorized/stop.png);
+    background-image: url(../images/stop.png);
 }
 
 .icon-list-action {
-    background-image: url(../images/colorized/list.png);
+    background-image: url(../images/list.png);
 }
 
 /* use the one below if you want the time logger in the bottom oon it's own
