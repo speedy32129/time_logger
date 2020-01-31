@@ -1,5 +1,5 @@
 .icon-clock {
-    background-image: url(../images/clock.gif);
+    background-image: url(../images/time.png);
 }
 
 .icon-start {
@@ -13,17 +13,6 @@
 .icon-stop {
     background-image: url(../images/time_stop.png);
 }
-
-.icon-action {
-    background-repeat: no-repeat;
-    padding-left: 16px;
-    padding-right: 5px;
-    margin-bottom: -7px;
-}
-
-/*.icon-action:hover {*/
-    /*border: 1px solid #5bc0de;*/
-/*}*/
 
 .icon-start-action {
     background-image: url(../images/start.png);
@@ -39,6 +28,14 @@
 
 .icon-list-action {
     background-image: url(../images/list.png);
+}
+
+#time-logger-menu a {
+    margin-right: 2px;
+}
+
+#time-logger-menu .icon:hover {
+    padding-bottom: 2px;
 }
 
 /* use the one below if you want the time logger in the bottom oon it's own
