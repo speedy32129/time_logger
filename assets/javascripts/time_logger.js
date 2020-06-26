@@ -24,6 +24,12 @@ $(function() {
   // Pass an jQuery selector that should be replaced with the response from server.
   $(document).on('ajax:success', '[data-remote][data-replace]', function(event, data) {
     var $this = $(this);
+
+    // As of Rails 5.1 and the new rails-ujs, the parameters data, status, xhr have been bundled into event.detail.
+    // For information about the previously used jquery-ujs in Rails 5 and earlier, read the jquery-ujs wiki.
+    if (typeof(data) === "undefined") {
+      data = event.detail[2].response;
+    }
     $($this.data('replace')).html(data);
     $this.trigger('ajax:replaced');
     return true;
