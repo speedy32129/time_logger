@@ -19,7 +19,7 @@ class TimeLoggersController < ApplicationController
 
       if @time_logger.save
         apply_status_transition(@issue) unless Setting.plugin_time_logger['status_transitions'].nil?
-        render_menu
+        render_menu(params[:render], params[:menu_id])
       else
         flash[:error] = l(:start_time_logger_error)
       end
@@ -37,7 +37,7 @@ class TimeLoggersController < ApplicationController
       @time_logger.started_on = Time.now
       @time_logger.paused = false
       if @time_logger.save
-        render_menu
+        render_menu(params[:render], params[:menu_id])
       else
         flash[:error] = l(:resume_time_logger_error)
       end
@@ -53,7 +53,7 @@ class TimeLoggersController < ApplicationController
       @time_logger.time_spent = @time_logger.hours_spent
       @time_logger.paused = true
       if @time_logger.save
-        render_menu
+        render_menu(params[:render], params[:menu_id])
       else
         flash[:error] = l(:suspend_time_logger_error)
       end
@@ -70,20 +70,24 @@ class TimeLoggersController < ApplicationController
       hours = @time_logger.hours_spent.round(2)
       @time_logger.destroy
 
-      redirect_to_new_time_entry = Setting.plugin_time_logger['redirect_to_new_time_entry']
+      if params[:render].nil? && params[:menu_id].nil?
+        redirect_to_new_time_entry = Setting.plugin_time_logger['redirect_to_new_time_entry']
 
-      if redirect_to_new_time_entry
-        redirect_to controller: 'timelog',
-                    protocol: Setting.protocol,
-                    action: 'new',
-                    issue_id: issue_id,
-                    time_entry: { hours: hours }
+        if redirect_to_new_time_entry
+          redirect_to controller: 'timelog',
+                      protocol: Setting.protocol,
+                      action: 'new',
+                      issue_id: issue_id,
+                      time_entry: { hours: hours }
+        else
+          redirect_to controller: 'issues',
+                      protocol: Setting.protocol,
+                      action: 'edit',
+                      id: issue_id,
+                      time_entry: { hours: hours }
+        end
       else
-        redirect_to controller: 'issues',
-                    protocol: Setting.protocol,
-                    action: 'edit',
-                    id: issue_id,
-                    time_entry: { hours: hours }
+        render_menu(params[:render], params[:menu_id])
       end
     end
   end
@@ -104,10 +108,13 @@ class TimeLoggersController < ApplicationController
     end
   end
 
-  def render_menu
+  def render_menu(partial_name = nil, menu_id = nil)
+    partial_name ||= 'embed_menu'
+    menu_id ||= '#time-logger-menu'
+
     @project = Project.find_by_id(params[:project_id])
     @issue = Issue.find_by_id(params[:issue_id])
-    render partial: 'embed_menu'
+    render partial: partial_name, :locals => { :menu_id => menu_id }
   end
 
   protected

@@ -1,0 +1,47 @@
+<% time_logger = time_logger_for(User.current) %>
+<% replace_menu_id = menu_id || "#time-logger-menu" %>
+<% if !time_logger.nil? %>
+    <% if !@issue.nil? && @issue.id == time_logger.issue_id %>
+        <%= hidden_field_tag :time_logger_time_spent_to, time_logger.time_spent_to_s %>
+        <% if time_logger.paused %>
+            <%= link_to '',
+                        {:controller => '/time_loggers', :action => 'resume', :render => 'simple_button', :menu_id => replace_menu_id, :issue_id => @issue.id},
+                        :class => 'icon-action icon-start-action',
+                        :title => l(:resume_time_logger),
+                        :"data-replace" => replace_menu_id,
+                        :remote => true
+            %>
+            <%= link_to '',
+                        {:controller => '/time_loggers', :action => 'stop', :render => 'simple_button', :menu_id => replace_menu_id, :issue_id => @issue.id},
+                        :class => 'icon-action icon-stop-action', 
+                        :title => l(:stop_time_logger),
+                        :"data-replace" => replace_menu_id,
+                        :remote => true
+            %>
+        <% else %>
+            <%= link_to '',
+                        {:controller => '/time_loggers', :action => 'suspend', :render => 'simple_button', :menu_id => replace_menu_id, :issue_id => @issue.id },
+                        :class => 'icon-action icon-pause-action',
+                        :title => l(:suspend_time_logger),
+                        :"data-replace" => replace_menu_id,
+                        :remote => true
+            %>
+            <%= link_to '',
+                        {:controller => '/time_loggers', :action => 'stop', :render => 'simple_button', :menu_id => replace_menu_id, :issue_id => @issue.id},
+                        :class => 'icon-action icon-stop-action', 
+                        :title => l(:stop_time_logger), 
+                        :"data-replace" => replace_menu_id,
+                        :remote => true
+            %>
+        <% end %>
+    <% end %>
+<% elsif !@project.nil? and User.current.allowed_to?(:log_time, @project) and !(@issue.nil? || @issue.new_record?) %>
+    <%= link_to '',
+                {:controller => '/time_loggers', :action => 'start', :issue_id => @issue.id, :render => 'simple_button', :menu_id => replace_menu_id},
+                :class => 'icon icon-start-action',
+                :"data-replace" => replace_menu_id,
+                :remote => true
+    %>
+<% end %>
+
+<%= javascript_tag "updateTimeLoggerMenu();" %>
