@@ -2,7 +2,7 @@
 <% replace_menu_id = menu_id || "#time-logger-menu" %>
 <% if !time_logger.nil? %>
     <% if !@issue.nil? && @issue.id == time_logger.issue_id %>
-        <%= hidden_field_tag :time_logger_time_spent_to, time_logger.time_spent_to_s %>
+        <%= hidden_field_tag :time_logger_time_spent_to, time_logger.time_spent_to_i_to_s %>
         <% if time_logger.paused %>
             <%= link_to '',
                         {:controller => '/time_loggers', :action => 'resume', :render => 'simple_button', :menu_id => replace_menu_id, :issue_id => @issue.id},
