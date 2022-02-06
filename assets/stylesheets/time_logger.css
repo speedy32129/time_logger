@@ -1,44 +1,41 @@
 .icon-clock {
-    background-image: url(../images/colorized/clock.gif);
+    background-image: url(../images/time.png);
 }
 
 .icon-start {
-    background-image: url(../images/colorized/time_start.png);
+    background-image: url(../images/time_start.png);
 }
 
 .icon-pause {
-    background-image: url(../images/colorized/time_pause.png);
+    background-image: url(../images/time_pause.png);
 }
 
 .icon-stop {
-    background-image: url(../images/colorized/time_stop.png);
+    background-image: url(../images/time_stop.png);
 }
-
-.icon-action {
-    background-repeat: no-repeat;
-    padding-left: 16px;
-    padding-right: 5px;
-    margin-bottom: -7px;
-}
-
-/*.icon-action:hover {*/
-    /*border: 1px solid #5bc0de;*/
-/*}*/
 
 .icon-start-action {
-    background-image: url(../images/colorized/start.png);
+    background-image: url(../images/start.png);
 }
 
 .icon-pause-action {
-    background-image: url(../images/colorized/pause.png);
+    background-image: url(../images/pause.png);
 }
 
 .icon-stop-action {
-    background-image: url(../images/colorized/stop.png);
+    background-image: url(../images/stop.png);
 }
 
 .icon-list-action {
-    background-image: url(../images/colorized/list.png);
+    background-image: url(../images/list.png);
+}
+
+#time-logger-menu a {
+    margin-right: 2px;
+}
+
+#time-logger-menu .icon:hover {
+    padding-bottom: 2px;
 }
 
 /* use the one below if you want the time logger in the bottom oon it's own

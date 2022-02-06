@@ -8,31 +8,31 @@
         %>
         <%= link_to '',
                     {:controller => '/time_loggers', :action => 'resume'},
-                    :class => 'icon-action icon-start-action',
+                    :class => 'icon icon-start-action',
                     :title => l(:resume_time_logger),
                     :"data-replace" => '#time-logger-menu',
                     :remote => true
         %>
         <%= link_to '',
                     {:controller => '/time_loggers', :action => 'stop'},
-                    {:class => 'icon-action icon-stop-action', :title => l(:stop_time_logger)}
+                    {:class => 'icon icon-stop-action', :title => l(:stop_time_logger)}
         %>
     <% else %>
         <%# A time tracker is running, display the tracked issue, the time spent and the suspend/stop actions %>
         <%= link_to ' #' + time_logger.issue_id.to_s + " / #{time_logger.time_spent_to_s} /",
                     {:controller => '/issues', :action => 'show', :id => time_logger.issue_id},
-                    {:class => 'icon-action icon-clock'}
+                    {:class => 'icon icon-clock'}
         %>
         <%= link_to '',
                     {:controller => '/time_loggers', :action => 'suspend'},
-                    :class => 'icon-action icon-pause-action',
+                    :class => 'icon icon-pause-action',
                     :title => l(:suspend_time_logger),
                     :"data-replace" => '#time-logger-menu',
                     :remote => true
         %>
         <%= link_to '',
                     {:controller => '/time_loggers', :action => 'stop'},
-                    {:class => 'icon-action icon-stop-action', :title => l(:stop_time_logger)}
+                    {:class => 'icon icon-stop-action', :title => l(:stop_time_logger)}
         %>
     <% end %>
 <% elsif !@project.nil? and User.current.allowed_to?(:log_time, @project) and !(@issue.nil? || @issue.new_record?) %>
@@ -54,7 +54,7 @@
     <span>
         <%= link_to '',
                     {:controller => '/time_loggers', :action => 'index'},
-                    {:class => 'icon-action icon-list-action', :title => l(:list_time_loggers)}
+                    {:class => 'icon icon-list-action', :title => l(:list_time_loggers)}
         %>
     </span>
 <% end %>
