@@ -22,12 +22,12 @@ $(function() {
 
   // Support for data-replace tag on elements with data-remote.
   // Pass an jQuery selector that should be replaced with the response from server.
-  // $(document).on('ajax:success', '[data-remote][data-replace]', function(event, data) {
-  //   var $this = $(this);
-  //   $($this.data('replace')).html(data);
-  //   $this.trigger('ajax:replaced');
-  //   return true;
-  // });
+  $(document).on('ajax:success', '[data-remote][data-replace]', function(event, data) {
+    var $this = $(this);
+    $($this.data('replace')).html(data);
+    $this.trigger('ajax:replaced');
+    return true;
+  });
 });
 
 // Used in Plugin Settings page to delete transition
