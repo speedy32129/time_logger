@@ -107,11 +107,7 @@ class TimeLoggersController < ApplicationController
   def render_menu
     @project = Project.find_by_id(params[:project_id])
     @issue = Issue.find_by_id(params[:issue_id])
-
-    respond_to do |format|
-      format.js { render partial: 'embed_menu_icons' }
-      format.html { render partial: 'embed_menu' }
-    end
+    render partial: 'embed_menu'
   end
 
   protected
