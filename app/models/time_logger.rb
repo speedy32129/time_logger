@@ -31,6 +31,10 @@ class TimeLogger < ActiveRecord::Base
     hours.to_s + l(:time_logger_hour_sym) + minutes.to_s.rjust(2, '0')
   end
 
+  def time_spent_to_i_to_s
+    hours_spent.round(2).to_s
+  end
+
   def zombie?
     user = help.user_from_id(user_id)
     return true if user.nil? || user.locked?
