@@ -1,0 +1,39 @@
+<%# show link to the logging issue %>
+<%= link_to(issue_path(@time_logger.issue_id), :method => :get, :class => 'icon-action icon-clock') do %>
+  <%= content_tag(:span, %{##{@time_logger.issue_id}}, :id => 'time-logger-issue-id') %>
+<% end %>
+
+<%= content_tag(:div, nil, :id => 'tl-timer-wrapper') do %>
+  <%= content_tag(:span, "%02d" % @time_logger.total_time[:hours], :id => 'hour') %>:
+  <%= content_tag(:span, "%02d" % @time_logger.total_time[:minutes], :id => 'min') %>:
+  <%= content_tag(:span, "%02d" % @time_logger.total_time[:seconds], :id => 'sec') %>
+<% end %>
+
+<% if @time_logger.paused %>
+<%# A time tracker is in pause, display resume button %>
+  <%= resume_link(@time_logger) %>
+  <%# and pause a js timer %>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          pause_timer();
+      });
+  </script>
+<% else %>
+<%# A time tracker is running, display suspend button %>
+  <%= suspend_link(@time_logger) %>
+  <%# and start a js timer %>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          start_timer(<%= @time_logger.total_time[:seconds] %>, <%= @time_logger.total_time[:minutes] %>, <%= @time_logger.total_time[:hours] %>);
+      });
+  </script>
+<% end %>
+
+<%# stop button %>
+<%= link_to '',
+            time_logger_stop_path(:id => @time_logger),
+            :class => 'icon-action icon-stop-action',
+            :title => l(:stop_time_logger),
+            :id => 'time-logger-stop-btn',
+            :onclick => 'stop_timer();'
+%>

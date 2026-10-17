@@ -1,41 +1,28 @@
 <% if User.current.logged? %>
-
-<!--
-This script replaces the <a id="time-logger-menu">...</a> element by a span with the same id.
-This is needed as we want several links for our time tracker menu item.
-The span is populated with current time tracker state.
-(no AJAX request here, this allows to have the time tracker immediately visible)
--->
+  <% @time_logger = time_logger_for(User.current) %>
+  <%#
+    Redmine 7 renders the account menu inside the avatar dropdown, so this script adds
+    a <div id="time-logger-menu"> to the top menu bar, right before the user menu.
+    On narrow screens (Redmine's mobile layout) the same div is moved to the flyout menu,
+    under the avatar, because the top menu bar is hidden there.
+    The div is populated with current time tracker state.
+    (no AJAX request here, this allows to have the time tracker immediately visible)
+  %>
     <%= javascript_tag "jQuery(document).ready(function($){
-    $('#time-logger-menu').html(
-    '<span id=\"time-logger-menu\">#{escape_javascript(((render :partial => 'time_loggers/embed_menu').delete "\n").strip)}</span>');
+    var menu = $('<div id=\"time-logger-menu\"></div>');
+    var mobile = window.matchMedia('(max-width: 899px)');
+    function placeTimeLoggerMenu() {
+      if (mobile.matches && $('.flyout-menu .flyout-menu__avatar').length) {
+        menu.insertAfter('.flyout-menu .flyout-menu__avatar');
+      } else if ($('#top-menu #account').length) {
+        menu.insertBefore('#top-menu #account');
+      } else {
+        $('#top-menu .profile-menu').prepend(menu);
+      }
+    }
+    placeTimeLoggerMenu();
+    if (mobile.addEventListener) { mobile.addEventListener('change', placeTimeLoggerMenu); }
+    menu.html('#{escape_javascript(((render :partial => 'time_loggers/embed_menu').delete "\n").strip)}');
     });"
     %>
-
-<!--
-This script defines the updateTimeLoggerMenu() function which will update
-the time tracker menu item using an AJAX request to retrieve the data
--->
-<%= javascript_tag do %>
-function updateTimeLoggerMenu() {
-$.ajax({
-    url:"<%=url_for :controller => '/time_loggers',:action => 'render_menu' %>",
-    data:({<%= (@project.nil? ? nil : "project_id:#{@project.id}") %><%= ((@issue.nil? or @issue.id.nil?) ? nil : ", issue_id:#{@issue.id}") %>}),
-    cache:false,
-    success: function(data){
-        $('#time-logger-menu').html(data);
-    },
-});
-}
-<% end %>
-
-<!--
-This script periodically updates the time tracker menu item to reflect any changes in the tracking state
-Refresh rate is taken from settings. If settings is invalid, 60 secs is used. The minimum value is 5 secs.
--->
-<%= cache [Setting[:plugin_time_logger]["refresh_rate"].to_i, "time_logger_refresh_rate"] do %>
-    <% update_rate = Setting[:plugin_time_logger]["refresh_rate"].to_i %>
-    <%= javascript_tag "var timer = setInterval(updateTimeLoggerMenu, #{update_rate >= 5 ? update_rate : 60} * 1000);" %>
-<% end %>
-
 <% end %>

@@ -1,30 +1,20 @@
-require 'redmine'
-
-require_dependency 'time_logger_hooks'
-
-# workaround helping rails to find the helper-methods
-require File.join(File.dirname(__FILE__), 'app/helpers/application_helper.rb')
+require File.expand_path 'lib/time_logger_hooks', __dir__
+require File.expand_path 'lib/time_logger_application_helper_patch', __dir__
 
 Redmine::Plugin.register :time_logger do
   name 'Time Logger'
-  author 'Jim McAleer'
-  description 'The orignal author was Jérémie Delaitre.'
-  url 'https://github.com/speedy32129/time_logger'
-  version '0.5.4'
+  author 'Jérémie Delaitre, Jim McAleer, Dmitry Makurin, Dmitry Beloglazov'
+  description 'Time logger is a Redmine plugin to ease time tracking when working on an issue'
+  url 'https://github.com/midnightdim/time_logger'
+  version '2026.10.0'
 
-  # fix for contect menus
-
-  requires_redmine version_or_higher: '1.1.0'
+  requires_redmine version_or_higher: '7.0.0'
 
   settings default: { refresh_rate: '60', status_transitions: {}, redirect_to_new_time_entry: 'off' }, partial: 'settings/time_logger'
 
   permission :view_others_time_loggers, time_loggers: :index
   permission :delete_others_time_loggers, time_loggers: :delete
 
-  menu :account_menu, :time_logger_menu, 'javascript:void(0)',
-       caption: '',
-       html: { id: 'time-logger-menu' },
-       first: true,
-       param: :project_id,
-       if: proc { User.current.logged? }
+  # Redmine 7 renders the account menu inside the avatar dropdown, so the time logger
+  # is not an account menu item anymore: time_loggers/_update_menu adds it to the top menu bar.
 end

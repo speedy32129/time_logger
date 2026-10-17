@@ -1,5 +1,7 @@
 class TimeLoggersController < ApplicationController
-  unloadable
+  before_action :find_time_logger, :only => [:resume, :suspend, :stop, :delete]
+  after_action :apply_status_transition, only: :start,
+               if: proc { Setting.plugin_time_logger['status_transitions'].present? }
 
   def index
     if User.current.nil?
@@ -12,117 +14,107 @@ class TimeLoggersController < ApplicationController
   end
 
   def start
-    @time_logger = current
-    if @time_logger.nil?
-      @issue = Issue.find_by_id(params[:issue_id])
-      @time_logger = TimeLogger.new(issue_id: @issue.id)
+    head :bad_request and return if params[:issue_id].nil? || TimeLogger.exists?(:user_id => User.current.id)
 
+    @time_logger = TimeLogger.new(:issue_id => params[:issue_id])
+    @time_logger.started_on = Time.current
+
+    respond_to do |format|
       if @time_logger.save
-        apply_status_transition(@issue) unless Setting.plugin_time_logger['status_transitions'].nil?
-        render_menu
+        format.js {render :partial => 'time_loggers/start'}
       else
-        flash[:error] = l(:start_time_logger_error)
+        head :internal_server_error
       end
-    else
-      flash[:error] = l(:time_logger_already_running_error)
     end
   end
 
   def resume
-    @time_logger = current
-    if @time_logger.nil? || !@time_logger.paused
-      flash[:error] = l(:no_time_logger_suspended)
-      redirect_to :back
-    else
-      @time_logger.started_on = Time.now
+    if @time_logger.try(:paused)
+      @time_logger.started_on = Time.current
       @time_logger.paused = false
-      if @time_logger.save
-        render_menu
-      else
-        flash[:error] = l(:resume_time_logger_error)
+
+      respond_to do |format|
+        if @time_logger.save
+          format.js {render :partial => 'time_loggers/resume'}
+        else
+          format.js {head :internal_server_error}
+        end
       end
+    else
+      # time logger already running or not found
+      head :bad_request
     end
   end
 
   def suspend
-    @time_logger = current
-    if @time_logger.nil? || @time_logger.paused
-      flash[:error] = l(:no_time_logger_running)
-      redirect_to :back
-    else
-      @time_logger.time_spent = @time_logger.hours_spent
+    # time logger is present and it is paused
+    if @time_logger.try(:paused) == false
+      @time_logger.time_spent = @time_logger.seconds_spent
       @time_logger.paused = true
-      if @time_logger.save
-        render_menu
-      else
-        flash[:error] = l(:suspend_time_logger_error)
+
+      respond_to do |format|
+        if @time_logger.save
+          format.js {render :partial => 'time_loggers/suspend'}
+        else
+          format.js {head :internal_server_error}
+        end
       end
+    else
+      # no time logger or it's not paused
+      head :bad_request
     end
   end
 
   def stop
-    @time_logger = current
-    if @time_logger.nil?
-      flash[:error] = l(:no_time_logger_running)
-      redirect_to :back
+    issue_id = @time_logger.issue_id
+    hours = @time_logger.hours_spent
+    @time_logger.destroy
+
+    redirect_to_new_time_entry = Setting.plugin_time_logger['redirect_to_new_time_entry']
+
+    if redirect_to_new_time_entry
+      redirect_to controller: 'timelog',
+                  action: 'new',
+                  issue_id: issue_id,
+                  time_entry: { hours: hours }
     else
-      issue_id = @time_logger.issue_id
-      hours = @time_logger.hours_spent.round(2)
-      @time_logger.destroy
-
-      redirect_to_new_time_entry = Setting.plugin_time_logger['redirect_to_new_time_entry']
-
-      if redirect_to_new_time_entry
-        redirect_to controller: 'timelog',
-                    protocol: Setting.protocol,
-                    action: 'new',
-                    issue_id: issue_id,
-                    time_entry: { hours: hours }
-      else
-        redirect_to controller: 'issues',
-                    protocol: Setting.protocol,
-                    action: 'edit',
-                    id: issue_id,
-                    time_entry: { hours: hours }
-      end
+      redirect_to controller: 'issues',
+                  action: 'edit',
+                  id: issue_id,
+                  time_entry: { hours: hours }
     end
   end
 
   def delete
-    time_logger = TimeLogger.find_by_id(params[:id])
-    if !time_logger.nil?
-      time_logger.destroy
-      flash[:notice] = l(:time_logger_delete_success)
-      respond_to do |format|
-        format.html { redirect_to time_loggers_path }
-      end
-    else
-      flash[:error] = l(:time_logger_delete_fail)
-      respond_to do |format|
-        format.html { redirect_to time_loggers_path }
-      end
+    @time_logger.destroy
+    flash[:notice] = l(:time_logger_delete_success)
+    respond_to do |format|
+      format.html {redirect_to time_logger_index_path}
     end
   end
 
-  def render_menu
-    @project = Project.find_by_id(params[:project_id])
-    @issue = Issue.find_by_id(params[:issue_id])
-    render partial: 'embed_menu'
-  end
+  private
 
-  protected
-
-  def current
-    TimeLogger.find_by_user_id(User.current.id)
-  end
-
-  def apply_status_transition(issue)
+  def apply_status_transition
+    issue = @time_logger.issue
     new_status_id = Setting.plugin_time_logger['status_transitions'][issue.status_id.to_s]
     new_status = IssueStatus.find_by_id(new_status_id)
     if issue.new_statuses_allowed_to(User.current).include?(new_status)
-      journal = @issue.init_journal(User.current, notes = l(:time_logger_label_transition_journal))
-      @issue.status_id = new_status_id
-      @issue.save
+      issue.init_journal(User.current, l(:time_logger_label_transition_journal))
+      issue.status_id = new_status_id
+      issue.save
+    end
+  end
+
+  def find_time_logger
+    @time_logger = TimeLogger.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    respond_to do |format|
+      format.html do
+        flash[:error] = l(:no_time_logger)
+        redirect_back_or_default(request.referer, :referer => true)
+      end
+      format.js {head :not_found}
     end
   end
 end

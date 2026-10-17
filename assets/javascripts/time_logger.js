@@ -1,35 +1,3 @@
-/*
- * This script updates the element 'id' with 'newContent' if the two contents differ
- */
-function updateElementIfChanged(id, newContent) {
-    var el = $(id);
-    if (el.innerHTML != newContent) { el.update(newContent); }
-}
-
-$(function() {
-
-  // Support for data-with tag on elements with data-remote.
-  // Pass custom params to data-with to send them with the request.
-  $(document).on('ajax:beforeSend', '[data-remote][data-with]', function(event, xhr, settings){
-    var params = eval($(this).data('with'));
-    if (settings.url.match(/\?/)) {
-      settings.url = settings.url + '&' + params;
-    } else {
-      settings.url = settings.url + params;
-    }
-    return true;
-  });
-
-  // Support for data-replace tag on elements with data-remote.
-  // Pass an jQuery selector that should be replaced with the response from server.
-  $(document).on('ajax:success', '[data-remote][data-replace]', function(event, data) {
-    var $this = $(this);
-    $($this.data('replace')).html(data);
-    $this.trigger('ajax:replaced');
-    return true;
-  });
-});
-
 // Used in Plugin Settings page to delete transition
 function deleteTransitionField(from_id) {
   // changes field name to remove from settings.
@@ -44,4 +12,69 @@ function addTransitionField() {
   var from_id = document.getElementById('new-transition-from').value;
   var new_tag = '<input type="hidden" id="settings_status_transition_'+ from_id + '" name="settings[status_transitions][' + from_id + ']" value="' + to_id + '">';
   elem.innerHTML= new_tag;
+}
+
+// timer
+let x;
+let startstop = 0;
+let started_on = 0;
+/* holds incrementing value */
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+/* Contains and outputs returned value of  function checkTime */
+let secOut = 0;
+let minOut = 0;
+let hourOut = 0;
+
+function pause_timer() {
+  if (!x) { return; } // no timer running
+  stop_timer();
+}
+
+function start_timer(sec, min, hour) {
+  if (x) { return; } // a timer is already running
+
+  // get the time
+  seconds = sec;
+  minutes = min;
+  hours = hour;
+
+  x = setInterval(tl_timer, 1000);
+}
+
+function stop_timer() {
+  clearInterval(x);
+  x = null;
+}
+
+// Output variable End
+function tl_timer() {
+  secOut = checkTime(seconds);
+  minOut = checkTime(minutes);
+  hourOut = checkTime(hours);
+
+  seconds = ++seconds;
+
+  if (seconds === 60) {
+    minutes = ++minutes;
+    seconds = 0;
+  }
+
+  if (minutes === 60) {
+    minutes = 0;
+    hours = ++hours;
+  }
+
+  document.getElementById("sec").innerHTML = secOut;
+  document.getElementById("min").innerHTML = minOut;
+  document.getElementById("hour").innerHTML = hourOut;
+}
+
+// Adds 0 when value is <10
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
 }

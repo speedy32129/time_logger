@@ -27,7 +27,7 @@
                             <% status_to = status_from_id(to) %>
                             <% if status_from.nil? or status_to.nil? %>
                                 <% has_zombie = true %>
-                                <td class="zombie icon icon-warning"></td>
+                                <td class="zombie"><span class="icon icon-warning"><%= sprite_icon('warning') %></span></td>
                             <% else %>
                                 <td class="zombie"></td>
                             <% end %>
@@ -40,7 +40,7 @@
                             </td>
                             <% if edit_allowed %>
                                 <td class="buttons">
-                                    <%= link_to l(:time_logger_label_delete),
+                                    <%= link_to sprite_icon('del', l(:time_logger_label_delete)),
                                                 '#',
                                                 :remote => true,
                                                 :onclick => "deleteTransitionField(#{from.to_s});$('form').submit();",
@@ -56,7 +56,7 @@
     </div>
 
     <% if has_zombie %>
-        <p class="legend icon icon-warning"><%= l(:time_logger_settings_zombie_transition) %></p>
+        <p class="legend"><span class="icon icon-warning"><%= sprite_icon('warning', l(:time_logger_settings_zombie_transition)) %></span></p>
     <% end %>
 
     <% if edit_allowed %>
@@ -65,7 +65,7 @@
             <%= select_tag 'new-transition-from', new_transition_from_options(transitions) %>
             <%= label_tag 'new-transition-to', l(:time_logger_settings_new_transition_to) %>
             <%= select_tag 'new-transition-to', new_transition_to_options %>
-            <%= link_to l(:time_logger_settings_new_transition_add),
+            <%= link_to sprite_icon('add', l(:time_logger_settings_new_transition_add)),
                         '#',
                         :remote => true,
                         :onclick => "addTransitionField();$('form').submit();",

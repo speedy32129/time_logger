@@ -3,28 +3,33 @@
     <% if time_logger.paused %>
         <%# A time tracker is paused, display the resume action %>
         <li>
-        <%= link_to l(:resume_time_logger).capitalize + ' #' + time_logger.issue_id.to_s,
-            { :controller => '/time_loggers', :action => 'resume' },
-            :class => 'icon icon-start',
-            'data-replace' => '#time-logger-menu',
-            :remote => true
-        %>
+        <%= link_to(
+                "#{l(:resume_time_logger)} ##{time_logger.issue_id}",
+                time_logger_resume_path(:id => time_logger.id),
+                :class => 'icon icon-start',
+                :id => 'time-logger-resume-btn',
+                :title => l(:suspend_time_logger),
+                :remote => true
+            ) %>
         </li>
     <% else %>
         <%# A time tracker is not paused, display the suspend action %>
         <li>
-        <%= link_to l(:suspend_time_logger).capitalize + ' #' + time_logger.issue_id.to_s,
-            { :controller => '/time_loggers', :action => 'suspend' },
-            :class => 'icon icon-pause',
-            'data-replace' => '#time-logger-menu',
-            :remote => true
-        %>
+        <%= link_to(
+                "#{l(:suspend_time_logger)} ##{time_logger.issue_id}",
+                time_logger_suspend_path(:id => time_logger.id),
+                :class => 'icon icon-pause',
+                :id => 'time-logger-suspend-btn',
+                :title => l(:suspend_time_logger),
+                :onclick => %{pause_timer();},
+                :remote => true
+            ) %>
         </li>
     <% end %>
 
     <%# A time tracker exists, display the stop action %>
     <li>
-        <%= link_to l(:stop_time_logger).capitalize + ' #' + time_logger.issue_id.to_s, { :controller => '/time_loggers', :action => 'stop' },
+        <%= link_to l(:stop_time_logger).capitalize + ' #' + time_logger.issue_id.to_s, { :controller => '/time_loggers', :action => 'stop', :id => time_logger.id },
             { :class => 'icon icon-stop' } %>
     </li>
 <% elsif !@project.nil? and !@issue.nil? and User.current.allowed_to?(:log_time, @project) %>

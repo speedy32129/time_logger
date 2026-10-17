@@ -1,53 +1,56 @@
-# Helper access from the model
-class TLHelper
-  include Singleton
-  include TimeLoggersHelper
-end
-
-def help
-  TLHelper.instance
-end
-
 class TimeLogger < ActiveRecord::Base
   belongs_to :user
-  has_one :issue
+  belongs_to :issue
 
   def initialize(arguments = nil)
     super(arguments)
     self.user_id = User.current.id
-    self.started_on = DateTime.now
-    self.time_spent = 0.0
+    self.started_on = DateTime.current
+    self.time_spent = 0
     self.paused = false
   end
 
+  def seconds_spent
+    running_time + time_spent.to_i
+  end
+
   def hours_spent
-    running_time + time_spent
+    (seconds_spent.to_f / 3600.0).round(2)
   end
 
   def time_spent_to_s
-    total = hours_spent
-    hours = total.to_i
-    minutes = ((total - hours) * 60).to_i
-    hours.to_s + l(:time_logger_hour_sym) + minutes.to_s.rjust(2, '0')
+    total = seconds_spent
+    "%02d:%02d:%02d" % [total / 3600, total / 60%60, total % 60]
+  end
+
+  def total_time
+    total = seconds_spent
+    hours = total / 3600
+    minutes = total / 60%60
+    seconds = total % 60
+
+    {
+        :total => "%02d:%02d:%02d" % [total / 3600, total / 60%60, total % 60],
+        :hours => hours,
+        :minutes => minutes,
+        :seconds => seconds
+    }
   end
 
   def zombie?
-    user = help.user_from_id(user_id)
-    return true if user.nil? || user.locked?
-
-    issue = help.issue_from_id(issue_id)
-    return true if issue.nil? || !user.allowed_to?(:log_time, issue.project)
+    return true unless user
+    return true unless issue
+    return true if user.locked?
+    return true unless user.allowed_to?(:log_time, issue.project)
 
     false
   end
 
-  protected
-
   def running_time
-    if paused
+    if paused?
       0
     else
-      ((DateTime.now.to_i - started_on.to_i) / 3600.0).to_f
+      Time.current.to_i - started_on.to_i
     end
   end
 end

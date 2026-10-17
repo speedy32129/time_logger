@@ -1,79 +1,109 @@
-.icon-clock {
-    background-image: url(../images/colorized/clock.gif);
-}
-
-.icon-start {
-    background-image: url(../images/colorized/time_start.png);
-}
-
-.icon-pause {
-    background-image: url(../images/colorized/time_pause.png);
-}
-
-.icon-stop {
-    background-image: url(../images/colorized/time_stop.png);
-}
+.icon-clock { background-image: url(../images/colorized/clock.gif); }
+.icon-start { background-image: url(../images/colorized/time_start.png); }
+.icon-pause { background-image: url(../images/colorized/time_pause.png); }
+.icon-stop { background-image: url(../images/colorized/time_stop.png); }
 
 .icon-action {
     background-repeat: no-repeat;
-    padding-left: 16px;
-    padding-right: 5px;
-    margin-bottom: -7px;
+    background-size: contain;
+    background-position: center left;
+    width: 100%;
+    height: 0;
+    padding-left: 12px;
+}
+.icon-action:hover { cursor: pointer; }
+
+.time-not-running {
+    background-image: url(../images/colorized/time.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center left;
+    padding-left: 14px;
+    cursor: default;
 }
 
-/*.icon-action:hover {*/
-    /*border: 1px solid #5bc0de;*/
-/*}*/
-
-.icon-start-action {
-    background-image: url(../images/colorized/start.png);
+a#time-logger-menu {
+    cursor: default;
+    text-decoration: none;
 }
 
-.icon-pause-action {
-    background-image: url(../images/colorized/pause.png);
-}
+span#time-logger-menu > a { margin-right: 4px; }
+span#time-logger-issue-id { margin-left: 4px; }
 
-.icon-stop-action {
-    background-image: url(../images/colorized/stop.png);
-}
-
+.icon-start-action { background-image: url(../images/colorized/start.png); }
+.icon-pause-action { background-image: url(../images/colorized/pause.png); }
+.icon-stop-action { background-image: url(../images/colorized/stop.png); }
 .icon-list-action {
     background-image: url(../images/colorized/list.png);
+    margin: 0 !important;
 }
 
+div#tl-timer-wrapper {
+    display: inline-flex;
+    margin: 0 10px 0 2px;
+}
+
+/* Redmine 7: time logger block in the top menu bar, right before the user menu
+   (in the flyout menu under the avatar on narrow screens).
+   Bold white text and 16px icons, as the account menu looked before Redmine 7. */
+div#time-logger-menu {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-inline-end: 14px;
+    color: var(--oc-white);
+    font-weight: bold;
+    line-height: 16px;
+}
+.flyout-menu div#time-logger-menu {
+    margin: 0;
+    padding-block: 10px;
+    border-block-start: 1px solid rgba(255, 255, 255, .1);
+}
+div#time-logger-menu a { color: var(--oc-white); text-decoration: none; }
+div#time-logger-menu a:hover { opacity: 0.8; }
+div#time-logger-menu .icon-action {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    background-size: 16px 16px;
+    background-position: center;
+}
+/* the list link is wrapped in a span: as an inline-block it sat on the text baseline, 2px too high */
+div#time-logger-menu .icon-list-action { display: block; }
+div#time-logger-menu a.icon-clock,
+div#time-logger-menu a.icon-start,
+div#time-logger-menu .time-not-running {
+    width: auto;
+    padding-inline-start: 20px;
+    background-size: 16px 16px;
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+div#time-logger-menu span#time-logger-issue-id { margin-left: 0; }
+div#time-logger-menu div#tl-timer-wrapper { margin: 0 2px; font-variant-numeric: tabular-nums; }
+
+/* Redmine 7: the core .icon class no longer draws background icons.
+   Icon and text are aligned with the core context menu items (18px icon at 8px, text at 30px). */
+#context-menu a.icon-start, #context-menu a.icon-pause, #context-menu a.icon-stop {
+    background-repeat: no-repeat;
+    background-position: 9px center;
+    background-size: 16px 16px;
+    padding-inline-start: 30px;
+}
 /* use the one below if you want the time logger in the bottom oon it's own
 #time-logger-menu { position:fixed; bottom:0px; right:8px; background:black; padding:1em; }
 */
 
-#time-logger-admin td.start-date,
-#time-logger-admin td.spent-time,
-#time-logger-admin td.msg {
-    text-align: center;
-}
+#time-logger-admin td.start-date, #time-logger-admin td.spent-time, #time-logger-admin td.msg { text-align: center; }
+#time-logger-admin td.user, #time-logger-admin td.issue { text-align: left; }
+#time-logger-admin p.msg { text-align: center; }
 
-#time-logger-admin td.user,
-#time-logger-admin td.issue {
-    text-align: left;
-}
+#status-transition-list { margin-bottom: 10px; }
+#status-transition-list td.zombie { font-style: italic; }
+#status-transition-list td.msg { text-align: center; }
 
-#time-logger-admin p.msg {
-    text-align: center;
-}
-
-#status-transition-list {
-    margin-bottom: 10px;
-}
-
-#status-transition-list td.zombie {
-    font-style: italic;
-}
-
-#status-transition-list td.msg {
-    text-align: center;
-}
-
-#settings form[action="/settings/plugin/time_logger"] > div + div {
-    display: none
-}
+#settings form[action="/settings/plugin/time_logger"] > div + div { display: none }
 
 /* Hack to remove the div opened by redmine before rendering the plugin settings partial */
